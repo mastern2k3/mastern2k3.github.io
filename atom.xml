@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>BlackDoc</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2018-03-27T23:21:20+03:00</updated>
- <id>http://localhost:4000</id>
+ <title>Nitzan Zada</title>
+ <link href="https://github.com/karloespiritu/blackdoc/atom.xml" rel="self"/>
+ <link href="https://github.com/karloespiritu/blackdoc/"/>
+ <updated>2018-03-28T01:02:12+03:00</updated>
+ <id>https://github.com/karloespiritu/blackdoc</id>
  <author>
    <name>Karlo Espiritu</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Introducing BlackDoc</title>
-   <link href="http://localhost:4000/2015/05/14/introducing-blackdoc.html"/>
+   <link href="https://github.com/karloespiritu/blackdoc/2015/05/14/introducing-blackdoc.html"/>
    <updated>2015-05-14T00:00:00+03:00</updated>
-   <id>http://localhost:4000/2015/05/14/introducing-blackdoc</id>
+   <id>https://github.com/karloespiritu/blackdoc/2015/05/14/introducing-blackdoc</id>
    <content type="html">&lt;p&gt;BlackDoc is a two-column &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that’s ideal for websites that require a master-detail layout for viewing of content. It’s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler, and the &lt;a href=&quot;http://hyde.getpoole.com&quot;&gt;Hyde&lt;/a&gt; theme.&lt;/p&gt;
 
 &lt;p&gt;I needed a two-column layout with a scrolling sidebar to publish my &lt;a href=&quot;http://karloespiritu.com/cheatsheets&quot;&gt;code cheatsheets&lt;/a&gt;, and found the &lt;a href=&quot;http://hyde.getpoole.com&quot;&gt;Hyde&lt;/a&gt; Jekyll theme to be a good starting theme. To complement the color scheme of my main &lt;a href=&quot;http://karloespiritu.com&quot;&gt;website&lt;/a&gt;, I customised the theme to make it look great in black background and changed the sidebar to display scrolling content. I created this theme because I can’t seem to find any good Jekyll theme with a master-detail layout. Hopefully, someone will find this useful as well in their own projects.&lt;/p&gt;
@@ -59,9 +59,9 @@
  
  <entry>
    <title>Example content</title>
-   <link href="http://localhost:4000/2012/02/07/example-content.html"/>
+   <link href="https://github.com/karloespiritu/blackdoc/2012/02/07/example-content.html"/>
    <updated>2012-02-07T00:00:00+02:00</updated>
-   <id>http://localhost:4000/2012/02/07/example-content</id>
+   <id>https://github.com/karloespiritu/blackdoc/2012/02/07/example-content</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
 &lt;/div&gt;
@@ -210,9 +210,9 @@
  
  <entry>
    <title>What's Jekyll?</title>
-   <link href="http://localhost:4000/2012/02/06/whats-jekyll.html"/>
+   <link href="https://github.com/karloespiritu/blackdoc/2012/02/06/whats-jekyll.html"/>
    <updated>2012-02-06T00:00:00+02:00</updated>
-   <id>http://localhost:4000/2012/02/06/whats-jekyll</id>
+   <id>https://github.com/karloespiritu/blackdoc/2012/02/06/whats-jekyll</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project’s readme&lt;/a&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;

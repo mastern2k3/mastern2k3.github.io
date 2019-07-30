@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Time to Play | Gato Malo</title>
+    <meta name="description" content="An indie game developer with an insane cat">
+    <link rel="icon" href="/favicon.png">
+    <meta property="article:published_time" content="2019-07-21T15:19:37.000Z"><meta property="article:modified_time" content="2019-07-30T16:06:26.000Z"><meta property="og:site_name" content="Gato Malo"><meta property="og:title" content="Time to Play | Gato Malo"><meta property="og:type" content="article"><meta property="og:url" content="https://gatomalo.dev/blog/2019/07/21/time-to-play/"><meta property="og:image" content="https://gatomalo.dev/assets/img/logo.png"><meta name="twitter:title" content="Time to Play | Gato Malo"><meta name="twitter:url" content="https://gatomalo.dev/blog/2019/07/21/time-to-play/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://gatomalo.dev/assets/img/logo.png"><meta name="twitter:label1" content="Written by"><meta name="twitter:data2" content="Nitzan Zada"><meta name="twitter:creator" content="@nitzanzada"><meta name="keywords" content="game,games,game dev,throne of mithril,game blog,throne,mithril">
+    <link rel="preload" href="/assets/css/0.styles.27297d84.css" as="style"><link rel="preload" href="/assets/js/app.220d9e65.js" as="script"><link rel="preload" href="/assets/js/12.6a7128b0.js" as="script"><link rel="preload" href="/assets/js/2.3a72bb7d.js" as="script"><link rel="preload" href="/assets/js/1.70cfd39a.js" as="script"><link rel="preload" href="/assets/js/9.d7d9901e.js" as="script"><link rel="preload" href="/assets/js/16.15393b61.js" as="script"><link rel="prefetch" href="/assets/js/10.04f2ca85.js"><link rel="prefetch" href="/assets/js/11.eaacb4ec.js"><link rel="prefetch" href="/assets/js/13.2ce9df40.js"><link rel="prefetch" href="/assets/js/14.5c923b24.js"><link rel="prefetch" href="/assets/js/15.b60cf0a6.js"><link rel="prefetch" href="/assets/js/17.75792eda.js"><link rel="prefetch" href="/assets/js/18.e030557b.js"><link rel="prefetch" href="/assets/js/19.610eda2d.js"><link rel="prefetch" href="/assets/js/20.c097ec25.js"><link rel="prefetch" href="/assets/js/4.ec8aefae.js"><link rel="prefetch" href="/assets/js/5.8c16efa5.js"><link rel="prefetch" href="/assets/js/6.474196ea.js"><link rel="prefetch" href="/assets/js/7.6d354e4b.js"><link rel="prefetch" href="/assets/js/8.19ce3ea8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.27297d84.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/assets/img/logo.png" alt="Gato Malo" class="logo"> <span class="site-name can-hide">Gato Malo</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">Blog</a></div><div class="nav-item"><a href="/tag/throne/" class="nav-link">Throne of Mithril</a></div><div class="nav-item"><a href="/about/me.html" class="nav-link">About</a></div><div class="nav-item"><a href="/about/me.html#subscribe-and-stay-posted" class="nav-link">Subscribe</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">Blog</a></div><div class="nav-item"><a href="/tag/throne/" class="nav-link">Throne of Mithril</a></div><div class="nav-item"><a href="/about/me.html" class="nav-link">About</a></div><div class="nav-item"><a href="/about/me.html#subscribe-and-stay-posted" class="nav-link">Subscribe</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="page-title"><a href="#page-title" aria-hidden="true" class="header-anchor">#</a> Time to Play</h1> <p>The last week was a fun milestone. Up until recently, although the game was
+playable, you couldn't really get the characters to do what you had in mind for
+them.</p> <p>A few behaviors expected from an RTS were missing:</p> <ul><li><p><strong>After executing an ability on an enemy the character would stand idle.</strong><br>
+The expected behavior is to continue with the default auto attack which is
+what I ended up implementing.</p></li> <li><p><strong>After killing an enemy the character would always stand idle.</strong><br>
+This is pretty much the expected behavior except in the common scenario where
+there are still nearby enemies, in which case it should continue attacking the
+next nearby enemy.</p></li></ul> <p><img src="/assets/img/keep_attacking.6637e154.gif" alt="Expected behavior"></p> <p>On top of those, combat parameters like damage, healing done and cooldown times
+were never given more than an afterthought.</p> <p>To get those in order, while spending as little time as possible on development
+tasks I had to implement some tooling.</p> <h2 id="hot-reloading"><a href="#hot-reloading" aria-hidden="true" class="header-anchor">#</a> Hot reloading</h2> <p>Since most of the game logic is taking place on the server, tuning combat
+parameters and repositioning characters created the constant hurdle of
+re-deploying the server, so, in order to prototype more rapidly I ended up
+implementing two hot reloading features allowing me to prototype while avoiding
+re-deployment.</p> <h4 id="map-reloading"><a href="#map-reloading" aria-hidden="true" class="header-anchor">#</a> Map reloading</h4> <p>Although I did not mention this before, the way the server knows how to
+instantiate a map is through loading the map scene file from the game editor. So
+until I settle on a more dynamic solution, the map has to be prepackaged with
+the server deployment.</p> <p>Until I implement a more complete solution for server map loading I added a
+debug map loading RPC, allowing me to hot-load an alternative map to the main
+map to be used by the server without having to restart it.</p> <h4 id="character-definition-reloading"><a href="#character-definition-reloading" aria-hidden="true" class="header-anchor">#</a> Character definition reloading</h4> <p>All characters on the map are loaded through character &quot;templates&quot; that, until
+recently, were hard-coded in the server. Again, forcing me to restart the server
+to implement changes.</p> <p>Here I wanted more leeway. I wanted to be able to change character
+specifications way more rapidly because I'm predicting a lot of minute tuning
+will be required for those, possibly during an active match.</p> <p><em>That</em> required two things:</p> <ol><li><p>Character &quot;templates&quot; should be serializable to allow editing and
+transmission while the server is up. I landed on a simple JSON containing all
+parameters.</p></li> <li><p>A server RPC allowing the injection and re-instantiation of new character
+&quot;templates&quot; while a match is running.</p></li></ol> <p>To make the solution more complete I also ended up developing a helper tool
+that, when directed, watches a local file for changes and injects the new
+contents to the server.</p> <p>All this required a lot of work but the end result is satisfying.</p> <p><img src="/assets/img/set_texture.d6e9af24.gif" alt="Template hot reloading"></p> <h3 id="additional-progress"><a href="#additional-progress" aria-hidden="true" class="header-anchor">#</a> Additional progress</h3> <ul><li><p><strong>Breakthrough with native client</strong><br>
+Although I've overcome most problems with Godot's C# runtime, there's no
+denying the benefits of a native build. In the past few weeks I've managed to
+successfully tie up my critical dependencies (WebSockets, OpenAPI and Godot)
+under Rust using the <a href="https://github.com/GodotNativeTools/godot-rust" target="_blank" rel="noopener noreferrer">godot-rust<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> native tool repo, ensuring that door is
+open.</p></li> <li><p><strong>Dedicated server</strong><br>
+As the first step toward publishing a playable &quot;test-demo&quot; I've set up a
+dedicated ToM server ready to host matches. The server is working perfectly
+and in the next week or so I'll publish a &quot;test-demo&quot; allowing me and curious
+gamers to showcase and test the game mechanics.</p></li> <li><p><strong>Self targeting abilities</strong> - As part of adding a new &quot;Shield&quot; ability, I've
+implemented self targeting logic to enable abilities targeted at the caster.</p></li></ul> <p><img src="/assets/img/self_targeting.0acdb52d.gif" alt="Shield self cast"></p> <h2 id="next-up"><a href="#next-up" aria-hidden="true" class="header-anchor">#</a> Next up</h2> <ul><li><p><strong>Test demo</strong> - A playable demo designed toward showcasing and testing game
+mechanics on top of the new dedicated server.</p></li> <li><p><strong>Start map</strong> - Now that the base mechanics are working well I've begun to
+work on the starting map, which will contain an introductory cutscene some
+basic battle situations and the first miniboss.<br> <strong>God I'm excited.</strong></p></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Updated: </span> <span class="time">7/30/2019, 7:06:26 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/2019/06/28/buffs-everywhere/" class="prev">
+          Buffs, buffs everywhere
+        </a></span> <!----></p></div> <div class="theme-default-content"><div class="commentbox"></div></div> </main></div><div class="global-ui"><script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script></div></div>
+    <script src="/assets/js/app.220d9e65.js" defer></script><script src="/assets/js/12.6a7128b0.js" defer></script><script src="/assets/js/2.3a72bb7d.js" defer></script><script src="/assets/js/1.70cfd39a.js" defer></script><script src="/assets/js/9.d7d9901e.js" defer></script><script src="/assets/js/16.15393b61.js" defer></script>
+  </body>
+</html>

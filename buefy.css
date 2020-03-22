@@ -4009,7 +4009,7 @@ fieldset[disabled] .button {
   border-top-right-radius: 0;
 }
 
-.tag:not(body) {
+/* .tag:not(body) {
   align-items: center;
   background-color: whitesmoke;
   border-radius: 4px;
@@ -4022,7 +4022,7 @@ fieldset[disabled] .button {
   padding-left: 0.75em;
   padding-right: 0.75em;
   white-space: nowrap;
-}
+} */
 
 .tag:not(body) .delete {
   margin-left: 0.25rem;

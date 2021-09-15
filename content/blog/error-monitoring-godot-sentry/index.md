@@ -2,11 +2,10 @@
 title: Error Monitoring in Godot using Sentry
 tags: ["godot", "sentry", "monitoring", "error monitoring"]
 date: "2020-03-21T19:53:04+02:00"
+url: "/blog/2020/03/21/error-monitoring-godot-sentry/"
 ---
 
-# {{ $page.title }}
-
-![Godot and Sentry](./img/sentry-glyph-dark.png)
+![Godot and Sentry](sentry-glyph-dark.png)
 
 I'm a big fan of the Godot game engine, and lately, since players have been
 testing the game more often, I've decided to add some monitoring solution to
@@ -14,6 +13,7 @@ get a better view of what's failing players as they try to play.
 
 In this post I'll show how to integrate Sentry's .Net SDK in Godot and use
 it to receive usage reports and error monitoring.
+
 
 ## What's Sentry?
 
@@ -27,11 +27,12 @@ it makes it simple to integrate information and events **you** care about in
 those reports. Also, it's fairly **easy to integrate** and get started
 collecting data with, **even if** you're not that much of a friend to coding.
 
-![Sentry](./img/sentry_pic.jpg)
+![Sentry](sentry_pic.jpg)
 
 So, if you want a dashboard filled with reports about **how your game crashed**,
 to **who**, **why** and what were they doing leading to the crash,
 **keep reading.**
+
 
 ## Dependencies
 
@@ -88,13 +89,14 @@ Add references to the Sentry assemblies to your project:
 </ItemGroup>
 ```
 
+
 ## Initialization
 
 Using Godot we don't really have an initialization section so I created a
 dedicated node (here as `SentryController`) to hold the Sentry initialization
 logic.
 
-![Sentry Controller Node](./img/sentry_controller_node.png)
+![Sentry Controller Node](sentry_controller_node.png)
 
 ::: warning
 Pay close attention to the node placement in the scene tree.
@@ -131,6 +133,7 @@ public class SentryController : Node {
 }
 ```
 
+
 ## Error reporting
 
 Now that the client is set up, any unhandled exceptions thrown will get
@@ -150,7 +153,8 @@ public class App : Node2D {
 Which after getting pressed will cause an error to appear on your issue
 dashboard.
 
-![Error Issue](./img/issue_dashboard_error.png)
+![Error Issue](issue_dashboard_error.png)
+
 
 ## Breadcrumbs
 
@@ -176,7 +180,8 @@ public class App : Node2D {
 After a few clicks on this button, and then, a hit to the ol' crashing button,
 we'll get this neat report:
 
-![Sentry breadcrumbs](./img/sentry_breadcrumbs.png)
+![Sentry breadcrumbs](sentry_breadcrumbs.png)
+
 
 ## Example Project
 
@@ -185,6 +190,7 @@ I've prepared an example project demonstrating the Sentry integration here:
 <https://github.com/mastern2k3/godot-sentry-example>
 
 There is a small caveat for people looking to export for Android, read ahead.
+
 
 ## Android
 

@@ -56,10 +56,8 @@ Run **NuGet** to fetch all those into your project's `./packages/` folder.
 $ mono nuget.exe restore
 ```
 
-::: tip
-If you don't have **NuGet** yet you can grab it [here][nuget downloads].  
-The **Windows x86 Commandline** version is runnable using mono.
-:::
+> If you don't have **NuGet** yet you can grab it [here][nuget downloads].  
+> The **Windows x86 Commandline** version is runnable using mono.
 
 Add references to the Sentry assemblies to your project:
 
@@ -98,13 +96,11 @@ logic.
 
 ![Sentry Controller Node](sentry_controller_node.png#center)
 
-::: warning
-Pay close attention to the node placement in the scene tree.
-
-The Sentry controller node must come before any application nodes.
-Godot invokes their `_Ready()` methods according to their ordering on the tree,
-and any exception thrown before SDK init will **not be reported**.
-:::
+> **Pay close attention** to the node placement in the scene tree.
+> 
+> The Sentry controller node must come before any application nodes.
+> Godot invokes their `_Ready()` methods according to their ordering on the tree,
+> and any exception thrown before SDK init will **not be reported**.
 
 After creating an account and a project Sentry will suggest an initialization
 clause with your project's **Dsn**, similar to this:
@@ -115,21 +111,20 @@ using (SentrySdk.Init("https://451cf9b0fd9e4f0294a0d15b6c36bce2@sentry.io/517019
 }
 ```
 
-::: tip
-After creating a project [this page][Sentry quickstart page] will contain code examples with your project's Dsn in place.
-:::
+> After creating a project [this page][Sentry quickstart page] will contain code
+> examples with your project's Dsn in place.
 
 So after adding it to your node it should look somewhat like this.
 
 ```csharp
 public class SentryController : Node {
 
-	public override void _Ready() {
+    public override void _Ready() {
 
-		SentrySdk.Init(o => {
-			o.Dsn = new Dsn("https://451cf9b0fd9e4f0294a0d15b6c36bce2@sentry.io/5170198");
-		});
-	}
+        SentrySdk.Init(o => {
+            o.Dsn = new Dsn("https://451cf9b0fd9e4f0294a0d15b6c36bce2@sentry.io/5170198");
+        });
+    }
 }
 ```
 

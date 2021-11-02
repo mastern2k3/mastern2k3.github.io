@@ -5,7 +5,7 @@ date: "2020-03-21T19:53:04+02:00"
 url: "/blog/2020/03/21/error-monitoring-godot-sentry/"
 ---
 
-![Godot and Sentry](sentry-glyph-dark.png)
+![Godot and Sentry](sentry-glyph-dark.png#center)
 
 I'm a big fan of the Godot game engine, and lately, since players have been
 testing the game more often, I've decided to add some monitoring solution to
@@ -96,7 +96,7 @@ Using Godot we don't really have an initialization section so I created a
 dedicated node (here as `SentryController`) to hold the Sentry initialization
 logic.
 
-![Sentry Controller Node](sentry_controller_node.png)
+![Sentry Controller Node](sentry_controller_node.png#center)
 
 ::: warning
 Pay close attention to the node placement in the scene tree.

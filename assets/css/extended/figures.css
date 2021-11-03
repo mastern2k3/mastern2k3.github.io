@@ -1,0 +1,8 @@
+figure.rightCorner {
+    float: right;
+    margin: 0 0 0.7em 0.7em;
+}
+
+figure.rightCorner img {
+    margin: 0;
+}

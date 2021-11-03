@@ -2,11 +2,7 @@
 title: About Me
 ---
 
-::: right_image
-![Workin' man](./img/me.jpg)
-:::
-
-# About Me
+{{< figure src="me.jpg" class=rightCorner height="256" >}}
 
 Hi! I'm Nitzan :wave:
 
@@ -29,7 +25,7 @@ Although I've always been interested in game development, experimenting with
 engines and building nonsense games, I owe my newfound passion of game dev to my
 friends - my **nakamas**.
 
-![An adventure](./img/luffy_adventure.jpg)
+![An adventure](luffy_adventure.jpg)
 
 Two years ago, me and my friends got committed in becoming a successful game
 studio.
@@ -46,9 +42,3 @@ the adventure of building awesome games.
   &nbsp;
   <a href="https://github.com/mastern2k3"><img class="no-zoom" src="/github.png" style="width: 5em;" /></a>
 </center>
-
-<div style="margin-top: 3em"></div>
-
-## Subscribe and stay posted :love_letter:
-
-<MailchimpForm />

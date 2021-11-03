@@ -2,3 +2,15 @@ baseURL: "https://gatomalo.dev/"
 languageCode: "en-us"
 title: "Gato Malo"
 theme: "PaperMod"
+enableEmoji: true
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+menu:
+  main:
+  - identifier: about
+    name: About
+    url: /about/

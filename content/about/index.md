@@ -36,3 +36,8 @@ becoming world renowned.
 
 This blog is an attempt at documenting my private endeavors and team efforts in
 the adventure of building awesome games.
+
+
+#### The cat
+
+The cat's name is Sumsum and he's going through a phase.

@@ -5,8 +5,6 @@ next: /blog/2019-06-08-moving-around.md
 date: 2019-06-08T10:15:27+03:00
 ---
 
-# Three months in
-
 I figured it's time to start recording what I'm up to with **Throne of
 Mithrill**, so, here it goes.
 

@@ -14,6 +14,9 @@ menu:
   - identifier: about
     name: About
     url: /about/
+  - identifier: blog
+    name: Blog
+    url: "/blog/"
 
 params:
 

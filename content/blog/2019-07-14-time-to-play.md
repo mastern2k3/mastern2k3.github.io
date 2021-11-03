@@ -1,7 +1,7 @@
 ---
 title: Time to Play
 lang: en-US
-tag: throne
+tags: [throne]
 prev: /blog/2019-06-28-buffs-everywhere.md
 next: /blog/2019-08-12-demo-is-a-go.md
 date: 2019-07-21T18:19:37+03:00

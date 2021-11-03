@@ -1,7 +1,7 @@
 ---
 title: Back in Control
 lang: en-US
-tag: throne
+tags: [throne]
 prev: /blog/2019-09-10-my-items-bring-all-the-boys-to-the-yard.md
 next: /blog/2020-03-09-godot32-android.md
 date: 2019-12-07T20:18:53+02:00

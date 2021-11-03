@@ -1,16 +1,15 @@
 ---
 title: Moving Around
 lang: en-US
-tag: throne
+tags: [throne]
 prev: /blog/2019-06-08-three-months-in.md
 next: /blog/2019-06-28-buffs-everywhere.md
 date: 2019-06-08T12:09:01+03:00
 ---
 
-# Moving Around
-
 I haven't had a lot of time to spend on **ToM** development but here's what's
 new.
+
 
 ### Map panning
 
@@ -20,6 +19,7 @@ though small, make the overall experience much closer to what you had in mind.
 ![Map panning](./img/map_panning.gif)
 
 This also opens the door to larger maps, one of my next big tasks on the board.
+
 
 ### Support enemies
 
@@ -34,6 +34,7 @@ While hacking to implement this I also noticed I end up spending a large amount
 of time writing character querying logic code (i.e. get all enemy characters in
 proximity, get ally characters, etc.), so I added character querying
 abstractions making things easier.
+
 
 ## Next up
 

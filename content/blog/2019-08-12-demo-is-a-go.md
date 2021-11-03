@@ -1,7 +1,7 @@
 ---
 title: Test demo is a Go
 lang: en-US
-tag: throne
+tags: [throne]
 prev: /blog/2019-07-14-time-to-play.md
 next: /blog/2019-09-10-my-items-bring-all-the-boys-to-the-yard.md
 date: 2019-08-12T19:19:39+03:00

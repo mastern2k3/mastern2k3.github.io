@@ -1,6 +1,5 @@
 ---
 title: Buffs, buffs everywhere
-lang: en-US
 tags: [throne]
 prev: /blog/2019-06-08-moving-around.md
 next: /blog/2019-07-14-time-to-play.md

@@ -1,6 +1,5 @@
 ---
 title: Godot 3.2 and an Android Version
-lang: en-US
 tags: [throne]
 prev: /blog/2019-12-07-back-in-control.md
 date: 2020-03-09T00:25:54+02:00

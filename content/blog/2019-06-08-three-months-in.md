@@ -1,6 +1,5 @@
 ---
 title: Three months in
-lang: en-US
 tags: [throne]
 next: /blog/2019-06-08-moving-around.md
 date: 2019-06-08T10:15:27+03:00

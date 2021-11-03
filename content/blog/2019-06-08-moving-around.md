@@ -1,6 +1,5 @@
 ---
 title: Moving Around
-lang: en-US
 tags: [throne]
 prev: /blog/2019-06-08-three-months-in.md
 next: /blog/2019-06-28-buffs-everywhere.md

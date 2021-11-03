@@ -16,5 +16,22 @@ menu:
     url: /about/
 
 params:
+
   label:
     icon: /img/logo.png
+
+  profileMode:
+    enabled: true
+    title: "Gato Malo"
+    subtitle: "An indie game developer with an insane cat"
+    imageUrl: "/img/logo.png"
+    imageWidth: 256
+    imageHeight: 256
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/mastern2k3"
+    - name: "dev"
+      url: "https://dev.to/mastern2k3"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/nitzanzada/"

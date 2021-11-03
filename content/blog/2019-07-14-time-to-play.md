@@ -7,8 +7,6 @@ next: /blog/2019-08-12-demo-is-a-go.md
 date: 2019-07-21T18:19:37+03:00
 ---
 
-# {{ $page.title }}
-
 The last week was a fun milestone. Up until recently, although the game was
 playable, you couldn't really get the characters to do what you had in mind for
 them.
@@ -32,6 +30,7 @@ were never given more than an afterthought.
 To get those in order, while spending as little time as possible on development
 tasks I had to implement some tooling.
 
+
 ## Hot reloading
 
 Since most of the game logic is taking place on the server, tuning combat
@@ -39,6 +38,7 @@ parameters and repositioning characters created the constant hurdle of
 re-deploying the server, so, in order to prototype more rapidly I ended up
 implementing two hot reloading features allowing me to prototype while avoiding
 re-deployment.
+
 
 #### Map reloading
 
@@ -50,6 +50,7 @@ the server deployment.
 Until I implement a more complete solution for server map loading I added a
 debug map loading RPC, allowing me to hot-load an alternative map to the main
 map to be used by the server without having to restart it.
+
 
 #### Character definition reloading
 
@@ -78,6 +79,7 @@ All this required a lot of work but the end result is satisfying.
 
 ![Template hot reloading](./img/set_texture.gif)
 
+
 ### Additional progress
 
 * **Breakthrough with native client**  
@@ -97,6 +99,7 @@ All this required a lot of work but the end result is satisfying.
   implemented self targeting logic to enable abilities targeted at the caster.
 
 ![Shield self cast](./img/self_targeting.gif)
+
 
 ## Next up
 

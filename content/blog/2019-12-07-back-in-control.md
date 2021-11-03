@@ -7,10 +7,9 @@ next: /blog/2020-03-09-godot32-android.md
 date: 2019-12-07T20:18:53+02:00
 ---
 
-# {{ $page.title }}
-
 As discussed in the [previous post], the subject of this latest version is
 improving controls.
+
 
 ### Player selection
 
@@ -23,6 +22,7 @@ much expected right-click move command.
 
 ![Selection on click and right-click moving](./img/selection_moving_rightclick.gif)
 
+
 ### Ability range indication
 
 Trying to use a range limited ability now shows the player's required proximity.
@@ -31,6 +31,7 @@ Issuing an out-of-range action will result in the character first, reaching
 required proximity, and only then, executing the cast.
 
 ![Out of range commands](./img/out_of_range.gif)
+
 
 ### Auto panning
 
@@ -41,6 +42,7 @@ I feel it is a net positive that needs further tweaks, that's overall better
 than the manual way. It still leaves an unsolved problem of sometimes requiring
 a manual way of controlling the viewport, but, I guess that'll have to be fixed
 later when I have more feedback and better solutions.
+
 
 ## The "Book of Kek" was acquired!
 
@@ -59,6 +61,7 @@ available for browsing on the [match board].
 
 Hopefully this new version will get new player past the hump of needing to pan
 the viewport.
+
 
 ## Coming Next, Balancing, Survival Mode
 
@@ -83,9 +86,7 @@ So, unless some major issues arise from feedback, I'll be focusing on gameplay.
 As mentioned before, I would gladly appreciate any kind of feedback, either here
 or on [itch.io](https://mastern2k3.itch.io/tom).
 
-<div style="text-align: center; margin-top: 3em; margin-bottom: 3em;">
-    <iframe frameborder="0" src="https://itch.io/embed/442046?linkback=true&amp;fg_color=2c3e50&amp;link_color=3eaf7c" width="552" height="167"></iframe>
-</div>
+{{< itchio-widget-throne >}}
 
 [previous post]: ./2019-09-10-my-items-bring-all-the-boys-to-the-yard.md
-[match board]:   /throne/results.md
+[match board]:   {{< ref "/throne/results.md" >}}

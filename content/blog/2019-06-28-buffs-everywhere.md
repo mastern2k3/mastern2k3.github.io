@@ -7,12 +7,11 @@ next: /blog/2019-07-14-time-to-play.md
 date: 2019-06-28T14:10:00+03:00
 ---
 
-# {{ $page.title }}
-
 The task of adding character buffs to the game required adding some cool
 complexities to the state engine, including stat effects, allowing transient
 alterations to the character's stats, and state slots enabling characters to
 act-out multiple effects at a time.
+
 
 ### Buff system and triggers
 
@@ -31,6 +30,7 @@ types of triggers.
 Trigger semantics were designed with boss encounters in mind so that bosses
 could play out different phases of an encounter based on different triggers.
 
+
 ### Stat effects
 
 Although currently the damage inflicted by melee attacks is a simple flat value
@@ -43,6 +43,7 @@ that trigger a recalculation of the character's effective stats when applied.
 The "enrage" buff described above uses a stat effect, adding 15 melee damage to
 the effected character.
 
+
 ### On-the-fly character creation
 
 ![Ability creating character](./img/instance_char.gif) 
@@ -53,6 +54,7 @@ features I want to have, like:
 * Bosses summoning adds
 * Enemy "Nests" that keep spawning enemies unless destroyed
 * Character abilities that spawn allies
+
 
 ## Small Changes
 

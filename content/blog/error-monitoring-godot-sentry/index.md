@@ -1,8 +1,8 @@
 ---
 title: Error Monitoring in Godot using Sentry
-tags: ["godot", "sentry", "monitoring", "error monitoring"]
-date: "2020-03-21T19:53:04+02:00"
-url: "/blog/2020/03/21/error-monitoring-godot-sentry/"
+tags: [godot, sentry, monitoring, error monitoring]
+date: 2020-03-21T19:53:04+02:00
+url: /blog/2020/03/21/error-monitoring-godot-sentry/
 ---
 
 ![Godot and Sentry](sentry-glyph-dark.png#center)
@@ -228,6 +228,7 @@ appears as such in the `.csproj` file:
 
 If you're not interested in any of this Android nonsense you can comment /
 uncomment whichever line fits your needs.
+
 
 ## Other Sentry related stuff you should check out
 

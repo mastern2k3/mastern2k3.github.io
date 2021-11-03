@@ -28,6 +28,12 @@ params:
     imageWidth: 256
     imageHeight: 256
 
+    buttons:
+      - name: Blog
+        url: "/blog/"
+      - name: Throne of Mithril
+        url: "/tags/throne/"
+
   socialIcons:
     - name: "github"
       url: "https://github.com/mastern2k3"

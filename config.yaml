@@ -14,3 +14,7 @@ menu:
   - identifier: about
     name: About
     url: /about/
+
+params:
+  label:
+    icon: /img/logo.png

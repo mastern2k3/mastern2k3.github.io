@@ -36,9 +36,3 @@ becoming world renowned.
 
 This blog is an attempt at documenting my private endeavors and team efforts in
 the adventure of building awesome games.
-
-<center>
-  <a href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540nitzanzada%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=nitzanzada&tw_p=followbutton"><img class="no-zoom" src="/twitter.png" style="width: 5em;" /></a>
-  &nbsp;
-  <a href="https://github.com/mastern2k3"><img class="no-zoom" src="/github.png" style="width: 5em;" /></a>
-</center>

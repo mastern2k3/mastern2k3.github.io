@@ -1,9 +1,8 @@
 ---
 title: Time to Play
 tags: [throne]
-prev: /blog/2019-06-28-buffs-everywhere.md
-next: /blog/2019-08-12-demo-is-a-go.md
 date: 2019-07-21T18:19:37+03:00
+url: /blog/2019/07/21/time-to-play/
 ---
 
 The last week was a fun milestone. Up until recently, although the game was
@@ -21,7 +20,7 @@ A few behaviors expected from an RTS were missing:
   there are still nearby enemies, in which case it should continue attacking the
   next nearby enemy.
 
-![Expected behavior](./img/keep_attacking.gif)
+![Expected behavior](keep_attacking.gif)
 
 On top of those, combat parameters like damage, healing done and cooldown times
 were never given more than an afterthought.
@@ -76,7 +75,7 @@ contents to the server.
 
 All this required a lot of work but the end result is satisfying.
 
-![Template hot reloading](./img/set_texture.gif)
+![Template hot reloading](set_texture.gif)
 
 
 ### Additional progress
@@ -97,7 +96,7 @@ All this required a lot of work but the end result is satisfying.
 * **Self targeting abilities** - As part of adding a new "Shield" ability, I've
   implemented self targeting logic to enable abilities targeted at the caster.
 
-![Shield self cast](./img/self_targeting.gif)
+![Shield self cast](self_targeting.gif)
 
 
 ## Next up

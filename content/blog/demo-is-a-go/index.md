@@ -1,9 +1,8 @@
 ---
 title: Test demo is a Go
 tags: [throne]
-prev: /blog/2019-07-14-time-to-play.md
-next: /blog/2019-09-10-my-items-bring-all-the-boys-to-the-yard.md
 date: 2019-08-12T19:19:39+03:00
+url: /blog/2019/08/12/demo-is-a-go/
 ---
 
 At last I've managed to stabilize the client and make it playable.
@@ -21,8 +20,3 @@ mechanics and the overall concept of a tactics rpg.
 I would gladly appreciate any kind of feedback, either here or on [itch.io](https://mastern2k3.itch.io/tom).
 
 {{< itchio-widget-throne >}}
-
-
-### Demo Match Results
-
-<MatchList />

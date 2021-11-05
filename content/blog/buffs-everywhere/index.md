@@ -1,9 +1,8 @@
 ---
 title: Buffs, buffs everywhere
 tags: [throne]
-prev: /blog/2019-06-08-moving-around.md
-next: /blog/2019-07-14-time-to-play.md
 date: 2019-06-28T14:10:00+03:00
+url: /blog/2019/06/28/buffs-everywhere/
 ---
 
 The task of adding character buffs to the game required adding some cool
@@ -14,7 +13,7 @@ act-out multiple effects at a time.
 
 ### Buff system and triggers
 
-![Enrage triggered](./img/enrage_triggered.gif)
+![Enrage triggered](enrage_triggered.gif)
 
 The buff system took much thinking but little actual code, I ended up designing
 it as part of the already existing character state machine module.
@@ -24,7 +23,7 @@ causing an enemy to apply a buff to himself when it's hp falls under a certain
 amount, for that, I added trigger semantics allowing me to implement various
 types of triggers.
 
-![Damage over time on 'smash'](./img/dot.gif) 
+![Damage over time on 'smash'](dot.gif#center)
 
 Trigger semantics were designed with boss encounters in mind so that bosses
 could play out different phases of an encounter based on different triggers.
@@ -45,7 +44,7 @@ the effected character.
 
 ### On-the-fly character creation
 
-![Ability creating character](./img/instance_char.gif) 
+![Ability creating character](instance_char.gif#center) 
 
 This might not look too glamorous but it is an important milestone for cooler
 features I want to have, like:
@@ -66,4 +65,4 @@ features I want to have, like:
 * **Cast breaking** - Cast-breaking semantics now enable abilities and buffs to
   break spell-casting.
 
-![Cast breaking](./img/break_spell.gif)
+![Cast breaking](break_spell.gif#center)

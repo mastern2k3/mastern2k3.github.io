@@ -1,8 +1,8 @@
 ---
 title: Godot 3.2 and an Android Version
 tags: [throne]
-prev: /blog/2019-12-07-back-in-control.md
 date: 2020-03-09T00:25:54+02:00
+url: /blog/2020/03/09/godot32-android/
 ---
 
 I've been waiting for the [3.2 version of godot] to release for some time and
@@ -28,7 +28,7 @@ possible with the mouse hover.
 In order to replicate this ability I had to introduce a new behavior, allowing
 a cast command with a drag motion.
 
-![Ability Drag](./img/ability_drag.png)
+![Ability Drag](ability_drag.png)
 
 The results were way better than expected, this kind of control is exactly what
 I've been hoping for!

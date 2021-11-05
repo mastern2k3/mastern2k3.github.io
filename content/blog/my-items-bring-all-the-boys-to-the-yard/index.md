@@ -55,6 +55,6 @@ or on [itch.io](https://mastern2k3.itch.io/tom).
 
 {{< itchio-widget-throne >}}
 
-[promised back in June]: ./2019-06-08-three-months-in.md#more-things-in-the-works
+[promised back in June]: {{< ref "/blog/three-months-in/index.md#more-things-in-the-works" >}}
 [demo match board]: {{< ref "/throne/results.md" >}}
-[mentioned before]: ./2019-07-14-time-to-play.md#next-up
+[mentioned before]: {{< ref "/blog/time-to-play/index.md#next-up" >}}

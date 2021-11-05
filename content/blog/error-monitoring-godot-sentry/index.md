@@ -242,7 +242,6 @@ uncomment whichever line fits your needs.
 [Self hosting Sentry]: https://docs.sentry.io/server/
 
 [nuget downloads]: https://www.nuget.org/downloads
-[Android version]: ./2020-03-09-godot32-android.md
 [.Net Sentry SDK]: https://github.com/getsentry/sentry-dotnet
 [forking the SDK]: https://github.com/mastern2k3/sentry-dotnet
 [Sentry quickstart page]: https://docs.sentry.io/error-reporting/quickstart/?platform=csharp

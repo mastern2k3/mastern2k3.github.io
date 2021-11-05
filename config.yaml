@@ -20,6 +20,17 @@ menu:
 
 params:
 
+  keywords:
+    - nitzan zada
+    - game
+    - games
+    - game dev
+    - throne of mithril
+    - blade point
+    - game blog
+    - throne
+    - mithril
+
   label:
     icon: /img/logo.png
 

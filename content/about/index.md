@@ -15,9 +15,10 @@ I got into programming rather early, during 4th grade my mom signed me up for an
 after school class labeled *"come build computer games with VisualBasic 6!"*, **a
 blatant lie**, but nonetheless, I learned to program and got hooked.
 
-It's become exponentially worse since then, to the point where I have a
+It has become exponentially worse since then, to the point where I have a
 [program](https://github.com/mastern2k3/html-resume) generate my CV out of a
 configuration file.
+
 
 ### Game development
 
@@ -38,6 +39,6 @@ This blog is an attempt at documenting my private endeavors and team efforts in
 the adventure of building awesome games.
 
 
-#### The cat
+### The cat
 
 The cat's name is Sumsum and he's going through a phase.

@@ -5,7 +5,7 @@ date: 2020-03-21T19:53:04+02:00
 url: /blog/2020/03/21/error-monitoring-godot-sentry/
 ---
 
-![Godot and Sentry](sentry-glyph-dark.png#center)
+{{< figure src="sentry-glyph-dark.png" align=center class=darksafe >}}
 
 I'm a big fan of the Godot game engine, and lately, since players have been
 testing the game more often, I've decided to add some monitoring solution to
@@ -148,7 +148,7 @@ public class App : Node2D {
 Which after getting pressed will cause an error to appear on your issue
 dashboard.
 
-![Error Issue](issue_dashboard_error.png)
+![Error Issue](issue_dashboard_error.png#center)
 
 
 ## Breadcrumbs

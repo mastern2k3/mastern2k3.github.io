@@ -1,7 +1,7 @@
 baseURL: "https://gatomalo.dev/"
 languageCode: "en-us"
 title: "Gato Malo"
-theme: "PaperMod"
+theme: "PaperMod-Nord"
 enableEmoji: true
 outputs:
   home:
@@ -19,6 +19,8 @@ menu:
     url: "/blog/"
 
 params:
+
+  defaultTheme: dark
 
   keywords:
     - nitzan zada

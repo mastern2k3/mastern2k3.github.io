@@ -23,7 +23,8 @@ The task leading to adding the buff system was implementing an &ldquo;enrage&rdq
 <meta name=generator content="Hugo 0.89.2">
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
-</noscript><meta property="og:title" content="Buffs, buffs everywhere">
+</noscript>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-142124854-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Buffs, buffs everywhere">
 <meta property="og:description" content="The task of adding character buffs to the game required adding some cool complexities to the state engine, including stat effects, allowing transient alterations to the character&rsquo;s stats, and state slots enabling characters to act-out multiple effects at a time.
 Buff system and triggers The buff system took much thinking but little actual code, I ended up designing it as part of the already existing character state machine module.
 The task leading to adding the buff system was implementing an &ldquo;enrage&rdquo; mechanic, causing an enemy to apply a buff to himself when it&rsquo;s hp falls under a certain amount, for that, I added trigger semantics allowing me to implement various types of triggers.">

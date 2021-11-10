@@ -1,0 +1,204 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Time to Play | Gato Malo</title>
+<meta name=keywords content="throne">
+<meta name=description content="The last week was a fun milestone. Up until recently, although the game was playable, you couldn&rsquo;t really get the characters to do what you had in mind for them.
+A few behaviors expected from an RTS were missing:
+  After executing an ability on an enemy the character would stand idle.
+The expected behavior is to continue with the default auto attack which is what I ended up implementing.">
+<meta name=author content>
+<link rel=canonical href=https://gatomalo.dev/blog/2019/07/21/time-to-play/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.588a5ca7d005536e567e3d1dc964c37b489b2dd0714c2911217ef89e13c564fb.css integrity="sha256-WIpcp9AFU25Wfj0dyWTDe0ibLdBxTCkRIX74nhPFZPs=" rel="preload stylesheet" as=style>
+<link rel=preload href=/img/logo.png as=image>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://gatomalo.dev/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://gatomalo.dev/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://gatomalo.dev/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://gatomalo.dev/apple-touch-icon.png>
+<link rel=mask-icon href=https://gatomalo.dev/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.89.2">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+</noscript><meta property="og:title" content="Time to Play">
+<meta property="og:description" content="The last week was a fun milestone. Up until recently, although the game was playable, you couldn&rsquo;t really get the characters to do what you had in mind for them.
+A few behaviors expected from an RTS were missing:
+  After executing an ability on an enemy the character would stand idle.
+The expected behavior is to continue with the default auto attack which is what I ended up implementing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gatomalo.dev/blog/2019/07/21/time-to-play/"><meta property="article:section" content="blog">
+<meta property="article:published_time" content="2019-07-21T18:19:37+03:00">
+<meta property="article:modified_time" content="2019-07-21T18:19:37+03:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Time to Play">
+<meta name=twitter:description content="The last week was a fun milestone. Up until recently, although the game was playable, you couldn&rsquo;t really get the characters to do what you had in mind for them.
+A few behaviors expected from an RTS were missing:
+  After executing an ability on an enemy the character would stand idle.
+The expected behavior is to continue with the default auto attack which is what I ended up implementing.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"","item":"https://gatomalo.dev/blog/"},{"@type":"ListItem","position":2,"name":"Time to Play","item":"https://gatomalo.dev/blog/2019/07/21/time-to-play/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Time to Play","name":"Time to Play","description":"The last week was a fun milestone. Up until recently, although the game was playable, you couldn\u0026rsquo;t really get the characters to do what you had in mind for them.\nA few behaviors expected from an RTS were missing:\n  After executing an ability on an enemy the character would stand idle.\nThe expected behavior is to continue with the default auto attack which is what I ended up implementing.","keywords":["throne"],"articleBody":"The last week was a fun milestone. Up until recently, although the game was playable, you couldn’t really get the characters to do what you had in mind for them.\nA few behaviors expected from an RTS were missing:\n  After executing an ability on an enemy the character would stand idle.\nThe expected behavior is to continue with the default auto attack which is what I ended up implementing.\n  After killing an enemy the character would always stand idle.\nThis is pretty much the expected behavior except in the common scenario where there are still nearby enemies, in which case it should continue attacking the next nearby enemy.\n  On top of those, combat parameters like damage, healing done and cooldown times were never given more than an afterthought.\nTo get those in order, while spending as little time as possible on development tasks I had to implement some tooling.\nHot reloading Since most of the game logic is taking place on the server, tuning combat parameters and repositioning characters created the constant hurdle of re-deploying the server, so, in order to prototype more rapidly I ended up implementing two hot reloading features allowing me to prototype while avoiding re-deployment.\nMap reloading Although I did not mention this before, the way the server knows how to instantiate a map is through loading the map scene file from the game editor. So until I settle on a more dynamic solution, the map has to be prepackaged with the server deployment.\nUntil I implement a more complete solution for server map loading I added a debug map loading RPC, allowing me to hot-load an alternative map to the main map to be used by the server without having to restart it.\nCharacter definition reloading All characters on the map are loaded through character “templates” that, until recently, were hard-coded in the server. Again, forcing me to restart the server to implement changes.\nHere I wanted more leeway. I wanted to be able to change character specifications way more rapidly because I’m predicting a lot of minute tuning will be required for those, possibly during an active match.\nThat required two things:\n  Character “templates” should be serializable to allow editing and transmission while the server is up. I landed on a simple JSON containing all parameters.\n  A server RPC allowing the injection and re-instantiation of new character “templates” while a match is running.\n  To make the solution more complete I also ended up developing a helper tool that, when directed, watches a local file for changes and injects the new contents to the server.\nAll this required a lot of work but the end result is satisfying.\nAdditional progress   Breakthrough with native client\nAlthough I’ve overcome most problems with Godot’s C# runtime, there’s no denying the benefits of a native build. In the past few weeks I’ve managed to successfully tie up my critical dependencies (WebSockets, OpenAPI and Godot) under Rust using the godot-rust native tool repo, ensuring that door is open.\n  Dedicated server\nAs the first step toward publishing a playable “test-demo” I’ve set up a dedicated ToM server ready to host matches. The server is working perfectly and in the next week or so I’ll publish a “test-demo” allowing me and curious gamers to showcase and test the game mechanics.\n  Self targeting abilities - As part of adding a new “Shield” ability, I’ve implemented self targeting logic to enable abilities targeted at the caster.\n  Next up   Test demo - A playable demo designed toward showcasing and testing game mechanics on top of the new dedicated server.\n  Start map - Now that the base mechanics are working well I’ve begun to work on the starting map, which will contain an introductory cutscene some basic battle situations and the first miniboss.\nGod I’m excited.\n  ","wordCount":"630","inLanguage":"en","datePublished":"2019-07-21T18:19:37+03:00","dateModified":"2019-07-21T18:19:37+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gatomalo.dev/blog/2019/07/21/time-to-play/"},"publisher":{"@type":"Organization","name":"Gato Malo","logo":{"@type":"ImageObject","url":"https://gatomalo.dev/favicon.ico"}}}</script>
+</head>
+<body class=dark id=top>
+<script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://gatomalo.dev/ accesskey=h title="Gato Malo (Alt + H)">
+<img src=/img/logo.png alt=logo aria-label=logo height=" 30px">Gato Malo</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://gatomalo.dev/about/ title=About>
+<span>About</span>
+</a>
+</li>
+<li>
+<a href=https://gatomalo.dev/blog/ title=Blog>
+<span>Blog</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<h1 class=post-title>
+Time to Play
+</h1>
+<div class=post-meta><span title="2019-07-21 18:19:37 +0300 +0300">July 21, 2019</span>
+</div>
+</header>
+<div class=post-content><p>The last week was a fun milestone. Up until recently, although the game was
+playable, you couldn&rsquo;t really get the characters to do what you had in mind for
+them.</p>
+<p>A few behaviors expected from an RTS were missing:</p>
+<ul>
+<li>
+<p><strong>After executing an ability on an enemy the character would stand idle.</strong><br>
+The expected behavior is to continue with the default auto attack which is
+what I ended up implementing.</p>
+</li>
+<li>
+<p><strong>After killing an enemy the character would always stand idle.</strong><br>
+This is pretty much the expected behavior except in the common scenario where
+there are still nearby enemies, in which case it should continue attacking the
+next nearby enemy.</p>
+</li>
+</ul>
+<p><img loading=lazy src=keep_attacking.gif alt="Expected behavior">
+</p>
+<p>On top of those, combat parameters like damage, healing done and cooldown times
+were never given more than an afterthought.</p>
+<p>To get those in order, while spending as little time as possible on development
+tasks I had to implement some tooling.</p>
+<h2 id=hot-reloading>Hot reloading<a hidden class=anchor aria-hidden=true href=#hot-reloading>#</a></h2>
+<p>Since most of the game logic is taking place on the server, tuning combat
+parameters and repositioning characters created the constant hurdle of
+re-deploying the server, so, in order to prototype more rapidly I ended up
+implementing two hot reloading features allowing me to prototype while avoiding
+re-deployment.</p>
+<h4 id=map-reloading>Map reloading<a hidden class=anchor aria-hidden=true href=#map-reloading>#</a></h4>
+<p>Although I did not mention this before, the way the server knows how to
+instantiate a map is through loading the map scene file from the game editor. So
+until I settle on a more dynamic solution, the map has to be prepackaged with
+the server deployment.</p>
+<p>Until I implement a more complete solution for server map loading I added a
+debug map loading RPC, allowing me to hot-load an alternative map to the main
+map to be used by the server without having to restart it.</p>
+<h4 id=character-definition-reloading>Character definition reloading<a hidden class=anchor aria-hidden=true href=#character-definition-reloading>#</a></h4>
+<p>All characters on the map are loaded through character &ldquo;templates&rdquo; that, until
+recently, were hard-coded in the server. Again, forcing me to restart the server
+to implement changes.</p>
+<p>Here I wanted more leeway. I wanted to be able to change character
+specifications way more rapidly because I&rsquo;m predicting a lot of minute tuning
+will be required for those, possibly during an active match.</p>
+<p><em>That</em> required two things:</p>
+<ol>
+<li>
+<p>Character &ldquo;templates&rdquo; should be serializable to allow editing and
+transmission while the server is up. I landed on a simple JSON containing all
+parameters.</p>
+</li>
+<li>
+<p>A server RPC allowing the injection and re-instantiation of new character
+&ldquo;templates&rdquo; while a match is running.</p>
+</li>
+</ol>
+<p>To make the solution more complete I also ended up developing a helper tool
+that, when directed, watches a local file for changes and injects the new
+contents to the server.</p>
+<p>All this required a lot of work but the end result is satisfying.</p>
+<p><img loading=lazy src=set_texture.gif alt="Template hot reloading">
+</p>
+<h3 id=additional-progress>Additional progress<a hidden class=anchor aria-hidden=true href=#additional-progress>#</a></h3>
+<ul>
+<li>
+<p><strong>Breakthrough with native client</strong><br>
+Although I&rsquo;ve overcome most problems with Godot&rsquo;s C# runtime, there&rsquo;s no
+denying the benefits of a native build. In the past few weeks I&rsquo;ve managed to
+successfully tie up my critical dependencies (WebSockets, OpenAPI and Godot)
+under Rust using the <a href=https://github.com/GodotNativeTools/godot-rust>godot-rust</a> native tool repo, ensuring that door is
+open.</p>
+</li>
+<li>
+<p><strong>Dedicated server</strong><br>
+As the first step toward publishing a playable &ldquo;test-demo&rdquo; I&rsquo;ve set up a
+dedicated ToM server ready to host matches. The server is working perfectly
+and in the next week or so I&rsquo;ll publish a &ldquo;test-demo&rdquo; allowing me and curious
+gamers to showcase and test the game mechanics.</p>
+</li>
+<li>
+<p><strong>Self targeting abilities</strong> - As part of adding a new &ldquo;Shield&rdquo; ability, I&rsquo;ve
+implemented self targeting logic to enable abilities targeted at the caster.</p>
+</li>
+</ul>
+<p><img loading=lazy src=self_targeting.gif alt="Shield self cast">
+</p>
+<h2 id=next-up>Next up<a hidden class=anchor aria-hidden=true href=#next-up>#</a></h2>
+<ul>
+<li>
+<p><strong>Test demo</strong> - A playable demo designed toward showcasing and testing game
+mechanics on top of the new dedicated server.</p>
+</li>
+<li>
+<p><strong>Start map</strong> - Now that the base mechanics are working well I&rsquo;ve begun to
+work on the starting map, which will contain an introductory cutscene some
+basic battle situations and the first miniboss.<br>
+<strong>God I&rsquo;m excited.</strong></p>
+</li>
+</ul>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://gatomalo.dev/tags/throne/>Throne of Mithril</a></li>
+</ul>
+</footer><div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//gato-malo.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://gatomalo.dev/>Gato Malo</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/mastern2k3/hugo-PaperMod-Nord rel=noopener target=_blank>PaperMod-Nord</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>

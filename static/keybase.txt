@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/mastern2k3
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://gatomalo.dev
+  * I am mastern2k3 (https://keybase.io/mastern2k3) on keybase.
+  * I have a public key ASC3KgSRgR5hx8Twbbj_8MhTniWKYdAVNost1OMYxPxn3wo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b72a0491811e61c7c4f06db8fff0c8539e258a61d015368b2dd4e318c4fc67df0a",
+      "host": "keybase.io",
+      "kid": "0120b72a0491811e61c7c4f06db8fff0c8539e258a61d015368b2dd4e318c4fc67df0a",
+      "uid": "53b8a5418109700cbd7a132159e68b19",
+      "username": "mastern2k3"
+    },
+    "merkle_root": {
+      "ctime": 1563263257,
+      "hash": "cf1c67c0756f8091b69ad8a4cc06ca3f1e46a6a36092940de3d631a7fbbd0fad171e02d7aabc7b3055bacd6f2c5ffd37d18981a57165badfc8bd1b3a5fa26ee7",
+      "hash_meta": "ed46bc8d99bdebb0036e16f657932899a6094120d70c09e80a94cf200cabe14a",
+      "seqno": 5771899
+    },
+    "service": {
+      "entropy": "xyQKKraqZdnXim/685IM0dmt",
+      "hostname": "gatomalo.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.2.0"
+  },
+  "ctime": 1563263277,
+  "expire_in": 504576000,
+  "prev": "fe0b75fa7a706fb248cd37073c7e61bb60d285d5ad51c00aa0f06923dba6311c",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtyoEkYEeYcfE8G24//DIU54limHQFTaLLdTjGMT8Z98Kp3BheWxvYWTESpcCBcQg/gt1+npwb7JIzTcHPH5hu2DShdWtUcAKoPBpI9umMRzEIIlqC55xs42oT8QfGLAKciCxYaLFi/8vdwgfaDilzahjAgHCo3NpZ8RAlYVuN3Ib+Ver87thCv9J4x2GCINrB0q0HIcnw/+JefWdDhGEpSAFpLrpzTTXnGdCjsnw5Y4N4Ykq53iMniKjC6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIO2qDz2x/AG5FSGKD+ZUoGFZ6soNj+hlKzdCLK7XgKhWo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mastern2k3
+
+==================================================================

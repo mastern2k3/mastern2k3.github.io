@@ -8,6 +8,7 @@ outputs:
     - HTML
     - RSS
     - JSON
+disqusShortname: gato-malo
 
 menu:
   main:
@@ -21,6 +22,7 @@ menu:
 params:
 
   defaultTheme: dark
+  comments: true
 
   keywords:
     - nitzan zada
@@ -47,8 +49,8 @@ params:
     buttons:
       - name: Blog
         url: "/blog/"
-      - name: Blade Point
-        url: "/tags/bladepoint/"
+      # - name: Blade Point
+      #   url: "/tags/bladepoint/"
       - name: Throne of Mithril
         url: "/tags/throne/"
 

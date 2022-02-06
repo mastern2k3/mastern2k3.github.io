@@ -4,7 +4,7 @@ title: About Me
 
 {{< figure src="me.jpg" class=rightCorner height="256" >}}
 
-Hi! I'm Nitzan :wave:
+Hi! I'm Nitzan Zada :wave:
 
 I've been in front of computer screens ever since I can remember myself.
 

@@ -1,5 +1,5 @@
 ---
-title: GraphQL with pydantic
+title: Partial GraphQL models with pydantic
 tags: [throne]
 date: 2022-02-05T01:09:28+02:00
 ---

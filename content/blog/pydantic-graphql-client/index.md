@@ -1,11 +1,11 @@
 ---
 title: Partial GraphQL models with pydantic
-tags: [throne]
+tags: [graphql, pydantic, python]
 date: 2022-02-05T01:09:28+02:00
 ---
 
 I was recently building a client for a GraphQL service in python and was faced
-with the problem of modelling the message types.
+with the problem of modeling the message types.
 
 Since those are essentially json models, I turned to [pydantic] with which I had
 good experience in the past.

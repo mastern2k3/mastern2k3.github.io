@@ -24,6 +24,8 @@ params:
 
   defaultTheme: dark
   comments: true
+  author: Nitzan Zada
+  description: Nitzan Zada, an indie game developer with an insane cat.
 
   keywords:
     - nitzan zada

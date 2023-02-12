@@ -1,95 +1,20 @@
-<!doctype html><html lang=en dir=auto>
-<head><meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
-<title>Partial GraphQL models with pydantic | Gato Malo</title>
-<meta name=keywords content="graphql,pydantic,python">
-<meta name=description content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Partial GraphQL models with pydantic | Gato Malo</title><meta name=keywords content="graphql,pydantic,python"><meta name=description content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
 Since those are essentially json models, I turned to pydantic with which I had good experience in the past.
 Although in theory this should be relatively simple, I encountered some annoying problems right off the bat.
-Lets take trevorblades' country info GraphQL API for example.
-Its schema type for Country looks like this:">
-<meta name=author content="Nitzan Zada">
-<link rel=canonical href=https://gatomalo.dev/blog/pydantic-graphql-client/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.4c0edbddf6d9d86d1a8f4c9fa6cf34bd2dd8d46c62c5d0f5dbee4a15c69e3ccd.css integrity="sha256-TA7b3fbZ2G0aj0yfps80vS3Y1GxixdD12+5KFcaePM0=" rel="preload stylesheet" as=style>
-<link rel=preload href=/img/logo.png as=image>
-<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://gatomalo.dev/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=https://gatomalo.dev/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=https://gatomalo.dev/favicon-32x32.png>
-<link rel=apple-touch-icon href=https://gatomalo.dev/apple-touch-icon.png>
-<link rel=mask-icon href=https://gatomalo.dev/safari-pinned-tab.svg>
-<meta name=theme-color content="#2e2e33">
-<meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.2">
-<noscript>
-<style>#theme-toggle,.top-link{display:none}</style>
-</noscript>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-142124854-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Partial GraphQL models with pydantic">
-<meta property="og:description" content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
+Lets take trevorblades&rsquo; country info GraphQL API for example.
+Its schema type for Country looks like this:"><meta name=author content="Nitzan Zada"><link rel=canonical href=https://gatomalo.dev/blog/pydantic-graphql-client/><link crossorigin=anonymous href=/assets/css/stylesheet.87e7daa54d00389cea30a1d3ea83314172530ad5d91bd124315dd420951069a5.css integrity="sha256-h+fapU0AOJzqMKHT6oMxQXJTCtXZG9EkMV3UIJUQaaU=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://gatomalo.dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://gatomalo.dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://gatomalo.dev/favicon-32x32.png><link rel=apple-touch-icon href=https://gatomalo.dev/apple-touch-icon.png><link rel=mask-icon href=https://gatomalo.dev/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-142124854-1","auto"),ga("send","pageview"))</script><meta property="og:title" content="Partial GraphQL models with pydantic"><meta property="og:description" content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
 Since those are essentially json models, I turned to pydantic with which I had good experience in the past.
 Although in theory this should be relatively simple, I encountered some annoying problems right off the bat.
-Lets take trevorblades' country info GraphQL API for example.
-Its schema type for Country looks like this:">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://gatomalo.dev/blog/pydantic-graphql-client/"><meta property="article:section" content="blog">
-<meta property="article:published_time" content="2022-02-05T01:09:28+02:00">
-<meta property="article:modified_time" content="2022-02-05T01:09:28+02:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Partial GraphQL models with pydantic">
-<meta name=twitter:description content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
+Lets take trevorblades&rsquo; country info GraphQL API for example.
+Its schema type for Country looks like this:"><meta property="og:type" content="article"><meta property="og:url" content="https://gatomalo.dev/blog/pydantic-graphql-client/"><meta property="article:section" content="blog"><meta property="article:published_time" content="2022-02-05T01:09:28+02:00"><meta property="article:modified_time" content="2022-02-05T01:09:28+02:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Partial GraphQL models with pydantic"><meta name=twitter:description content="I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.
 Since those are essentially json models, I turned to pydantic with which I had good experience in the past.
 Although in theory this should be relatively simple, I encountered some annoying problems right off the bat.
-Lets take trevorblades' country info GraphQL API for example.
-Its schema type for Country looks like this:">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blog","item":"https://gatomalo.dev/blog/"},{"@type":"ListItem","position":2,"name":"Partial GraphQL models with pydantic","item":"https://gatomalo.dev/blog/pydantic-graphql-client/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Partial GraphQL models with pydantic","name":"Partial GraphQL models with pydantic","description":"I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.\nSince those are essentially json models, I turned to pydantic with which I had good experience in the past.\nAlthough in theory this should be relatively simple, I encountered some annoying problems right off the bat.\nLets take trevorblades' country info GraphQL API for example.\nIts schema type for Country looks like this:","keywords":["graphql","pydantic","python"],"articleBody":"I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.\nSince those are essentially json models, I turned to pydantic with which I had good experience in the past.\nAlthough in theory this should be relatively simple, I encountered some annoying problems right off the bat.\nLets take trevorblades' country info GraphQL API for example.\nIts schema type for Country looks like this:\ntype Country { code: ID! name: String! native: String! phone: String! capital: String currency: String emoji: String! }  I’ve omitted attributes leading to other types to keep this example brief but know that this API also has info on languages, continents and states!\n As an example, this simple query returns the following json:\nfrom requests import post url = \"https://countries.trevorblades.com\" query = \"\"\" { country(code: \"LV\") { code name native phone capital currency emoji } } \"\"\" post(url, json={\"query\": query}).json() # Returns: # {'data': {'country': {'code': 'LV', 'name': 'Latvia', 'native': 'Latvija', # 'phone': '371', 'capital': 'Riga', 'currency': 'EUR', 'emoji': '🇱🇻'}}} If we follow the schema type our pydantic class will look something like this:\nfrom typing import Optional from pydantic import BaseModel class Country(BaseModel): code: str name: str native: str phone: str capital: Optional[str] currency: Optional[str] emoji: str Which works great, using it to parse the response works perfectly:\nres = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Returns: # code='LV' name='Latvia' native='Latvija' phone='371' capital='Riga' # currency='EUR' emoji='🇱🇻' But, what if we want to query a small set of Country’s attributes?\nquery = \"\"\" { country(code: \"LV\") { code name } } \"\"\" res = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Throws: # pydantic.error_wrappers.ValidationError: 3 validation errors for Country # native # field required (type=value_error.missing) # phone # field required (type=value_error.missing) # emoji # field required (type=value_error.missing) pydantic doesn’t like the fact that some required attributes are missing.\nThis leaves us with some depressing “solutions” going forward:\n  Force querying all attributes whenever a Country is accessed.\nResulting in needless data being fetched.\n  Create a model for each query, omitting unused required attributes.\nResulting in an infinite amount of pydantic model classes which is impossible to keep track of.\n  Make all attributes Optional to avoid parsing errors.\nWhich results in a misleading model claiming all attributes are optional.\n  On my project we started working with option 3 and marked all attributes as optional.\nThat proved to be hazardous very quickly because:\n The IDE was showing warnings claiming required attributes being accessed might be None all the time, which led to: Developers failing to take into account legitimate possible None warnings assuming these are due to the loose models.  Troubled by these hazards I started researching a better option and landed on a good compromise.\nThe solution Since the big issue around the 3rd option (all optional) is the misleading model effecting the IDE, I started looking for a way to implicitly allow for partial creation of the model.\nI ended up with this:\nfrom typing import Union, Tuple, Dict, Any, get_origin, get_args from pydantic import BaseModel from pydantic.fields import DeferredType from pydantic.main import ModelMetaclass from pydantic.generics import GenericModel class ImplicitOptional(ModelMetaclass): def __new__(cls, name: str, bases: Tuple[type], namespaces: Dict[str, Any], **kwargs): annotations: dict = namespaces.get(\"__annotations__\", {}) for base in bases: for base_ in base.__mro__: if base_ is BaseModel or base_ is GenericModel: break annotations = {**getattr(base_, \"__annotations__\", {}), **annotations} for field, annotation in annotations.items(): if field.startswith(\"__\"): continue if get_origin(annotation) is Union and type(None) in get_args(annotation): continue if isinstance(annotation, DeferredType): continue annotations[field] = Optional[annotation] namespaces[\"__annotations__\"] = annotations return super().__new__(cls, name, bases, namespaces, **kwargs) class GraphQLBaseModel(BaseModel, metaclass=ImplicitOptional): pass  This solution is based on the solution proposed here with some extra considerations for generic classes and other complex cases that were not covered.\n What this voodoo python magic class does essentially is convert all non-optional fields declared in your models to optional by inheriting from GraphQLBaseModel instead of BaseModel.\nThis allows the IDE to continue type checking a more accurate model, displaying relevant warnings, while parsing a partial model without errors at runtime.\nSo when implementing for our example:\nclass Country(GraphQLBaseModel): code: str name: str native: str phone: str capital: Optional[str] currency: Optional[str] emoji: str query = \"\"\" { country(code: \"LV\") { code name } } \"\"\" res = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Returns # code='LV' name='Latvia' native=None phone=None capital=None currency=None # emoji=None It is important to mention, although somewhat preferable to option 3, this solution still comes with a sharp edge.\nWhen encountering a None value in a required field, you could safely deduce that it wasn’t mentioned in the query. On the other hand, a None value in an optional field is ambiguous and could mean either that data was None or that the field was not mentioned in the query.\n","wordCount":"792","inLanguage":"en","datePublished":"2022-02-05T01:09:28+02:00","dateModified":"2022-02-05T01:09:28+02:00","author":{"@type":"Person","name":"Nitzan Zada"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://gatomalo.dev/blog/pydantic-graphql-client/"},"publisher":{"@type":"Organization","name":"Gato Malo","logo":{"@type":"ImageObject","url":"https://gatomalo.dev/favicon.ico"}}}</script>
-</head>
-<body class=dark id=top>
-<script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove('dark')</script>
-<header class=header>
-<nav class=nav>
-<div class=logo>
-<a href=https://gatomalo.dev/ accesskey=h title="Gato Malo (Alt + H)">
-<img src=https://gatomalo.dev/img/logo.png alt=logo aria-label=logo height=" 30px">Gato Malo</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
-</span>
-</div>
-<ul id=menu>
-<li>
-<a href=https://gatomalo.dev/about/ title=About>
-<span>About</span>
-</a>
-</li>
-<li>
-<a href=https://gatomalo.dev/blog/ title=Blog>
-<span>Blog</span>
-</a>
-</li>
-</ul>
-</nav>
-</header>
-<main class=main>
-<article class=post-single>
-<header class=post-header>
-<h1 class=post-title>
-Partial GraphQL models with pydantic
-</h1>
-<div class=post-meta><span title="2022-02-05 01:09:28 +0200 +0200">February 5, 2022</span>&nbsp;·&nbsp;Nitzan Zada
-</div>
-</header>
-<div class=post-content><p>I was recently building a client for a GraphQL service in python and was faced
-with the problem of modeling the message types.</p>
-<p>Since those are essentially json models, I turned to <a href=https://github.com/samuelcolvin/pydantic/>pydantic</a> with which I had
-good experience in the past.</p>
-<p>Although in theory this should be relatively simple, I encountered some annoying
-problems right off the bat.</p>
-<p>Lets take <a href=https://github.com/trevorblades/countries>trevorblades' country info GraphQL API</a> for example.</p>
-<p>Its schema type for <code>Country</code> looks like this:</p>
-<pre tabindex=0><code>type Country {
+Lets take trevorblades&rsquo; country info GraphQL API for example.
+Its schema type for Country looks like this:"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blog","item":"https://gatomalo.dev/blog/"},{"@type":"ListItem","position":2,"name":"Partial GraphQL models with pydantic","item":"https://gatomalo.dev/blog/pydantic-graphql-client/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Partial GraphQL models with pydantic","name":"Partial GraphQL models with pydantic","description":"I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.\nSince those are essentially json models, I turned to pydantic with which I had good experience in the past.\nAlthough in theory this should be relatively simple, I encountered some annoying problems right off the bat.\nLets take trevorblades\u0026rsquo; country info GraphQL API for example.\nIts schema type for Country looks like this:","keywords":["graphql","pydantic","python"],"articleBody":"I was recently building a client for a GraphQL service in python and was faced with the problem of modeling the message types.\nSince those are essentially json models, I turned to pydantic with which I had good experience in the past.\nAlthough in theory this should be relatively simple, I encountered some annoying problems right off the bat.\nLets take trevorblades’ country info GraphQL API for example.\nIts schema type for Country looks like this:\ntype Country { code: ID! name: String! native: String! phone: String! capital: String currency: String emoji: String! } I’ve omitted attributes leading to other types to keep this example brief but know that this API also has info on languages, continents and states!\nAs an example, this simple query returns the following json:\nfrom requests import post url = \"https://countries.trevorblades.com\" query = \"\"\" { country(code: \"LV\") { code name native phone capital currency emoji } } \"\"\" post(url, json={\"query\": query}).json() # Returns: # {'data': {'country': {'code': 'LV', 'name': 'Latvia', 'native': 'Latvija', # 'phone': '371', 'capital': 'Riga', 'currency': 'EUR', 'emoji': '🇱🇻'}}} If we follow the schema type our pydantic class will look something like this:\nfrom typing import Optional from pydantic import BaseModel class Country(BaseModel): code: str name: str native: str phone: str capital: Optional[str] currency: Optional[str] emoji: str Which works great, using it to parse the response works perfectly:\nres = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Returns: # code='LV' name='Latvia' native='Latvija' phone='371' capital='Riga' # currency='EUR' emoji='🇱🇻' But, what if we want to query a small set of Country’s attributes?\nquery = \"\"\" { country(code: \"LV\") { code name } } \"\"\" res = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Throws: # pydantic.error_wrappers.ValidationError: 3 validation errors for Country # native # field required (type=value_error.missing) # phone # field required (type=value_error.missing) # emoji # field required (type=value_error.missing) pydantic doesn’t like the fact that some required attributes are missing.\nThis leaves us with some depressing “solutions” going forward:\nForce querying all attributes whenever a Country is accessed.\nResulting in needless data being fetched.\nCreate a model for each query, omitting unused required attributes.\nResulting in an infinite amount of pydantic model classes which is impossible to keep track of.\nMake all attributes Optional to avoid parsing errors.\nWhich results in a misleading model claiming all attributes are optional.\nOn my project we started working with option 3 and marked all attributes as optional.\nThat proved to be hazardous very quickly because:\nThe IDE was showing warnings claiming required attributes being accessed might be None all the time, which led to: Developers failing to take into account legitimate possible None warnings assuming these are due to the loose models. Troubled by these hazards I started researching a better option and landed on a good compromise.\nThe solution Since the big issue around the 3rd option (all optional) is the misleading model effecting the IDE, I started looking for a way to implicitly allow for partial creation of the model.\nI ended up with this:\nfrom typing import Union, Tuple, Dict, Any, get_origin, get_args from pydantic import BaseModel from pydantic.fields import DeferredType from pydantic.main import ModelMetaclass from pydantic.generics import GenericModel class ImplicitOptional(ModelMetaclass): def __new__(cls, name: str, bases: Tuple[type], namespaces: Dict[str, Any], **kwargs): annotations: dict = namespaces.get(\"__annotations__\", {}) for base in bases: for base_ in base.__mro__: if base_ is BaseModel or base_ is GenericModel: break annotations = {**getattr(base_, \"__annotations__\", {}), **annotations} for field, annotation in annotations.items(): if field.startswith(\"__\"): continue if get_origin(annotation) is Union and type(None) in get_args(annotation): continue if isinstance(annotation, DeferredType): continue annotations[field] = Optional[annotation] namespaces[\"__annotations__\"] = annotations return super().__new__(cls, name, bases, namespaces, **kwargs) class GraphQLBaseModel(BaseModel, metaclass=ImplicitOptional): pass This solution is based on the solution proposed here with some extra considerations for generic classes and other complex cases that were not covered.\nWhat this voodoo python magic class does essentially is convert all non-optional fields declared in your models to optional by inheriting from GraphQLBaseModel instead of BaseModel.\nThis allows the IDE to continue type checking a more accurate model, displaying relevant warnings, while parsing a partial model without errors at runtime.\nSo when implementing for our example:\nclass Country(GraphQLBaseModel): code: str name: str native: str phone: str capital: Optional[str] currency: Optional[str] emoji: str query = \"\"\" { country(code: \"LV\") { code name } } \"\"\" res = post(url, json={\"query\": query}).json() Country.parse_obj(res[\"data\"][\"country\"]) # Returns # code='LV' name='Latvia' native=None phone=None capital=None currency=None # emoji=None It is important to mention, although somewhat preferable to option 3, this solution still comes with a sharp edge.\nWhen encountering a None value in a required field, you could safely deduce that it wasn’t mentioned in the query. On the other hand, a None value in an optional field is ambiguous and could mean either that data was None or that the field was not mentioned in the query.\n","wordCount":"792","inLanguage":"en","datePublished":"2022-02-05T01:09:28+02:00","dateModified":"2022-02-05T01:09:28+02:00","author":{"@type":"Person","name":"Nitzan Zada"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://gatomalo.dev/blog/pydantic-graphql-client/"},"publisher":{"@type":"Organization","name":"Gato Malo","logo":{"@type":"ImageObject","url":"https://gatomalo.dev/favicon.ico"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://gatomalo.dev/ accesskey=h title="Gato Malo (Alt + H)"><img src=https://gatomalo.dev/img/logo.png alt aria-label=logo height=30>Gato Malo</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://gatomalo.dev/about/ title=About><span>About</span></a></li><li><a href=https://gatomalo.dev/blog/ title=Blog><span>Blog</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class=post-title>Partial GraphQL models with pydantic</h1><div class=post-meta><span title='2022-02-05 01:09:28 +0200 +0200'>February 5, 2022</span>&nbsp;·&nbsp;Nitzan Zada</div></header><div class=post-content><p>I was recently building a client for a GraphQL service in python and was faced
+with the problem of modeling the message types.</p><p>Since those are essentially json models, I turned to <a href=https://github.com/samuelcolvin/pydantic/>pydantic</a> with which I had
+good experience in the past.</p><p>Although in theory this should be relatively simple, I encountered some annoying
+problems right off the bat.</p><p>Lets take <a href=https://github.com/trevorblades/countries>trevorblades&rsquo; country info GraphQL API</a> for example.</p><p>Its schema type for <code>Country</code> looks like this:</p><pre tabindex=0><code>type Country {
     code: ID!
     name: String!
     native: String!
@@ -98,212 +23,147 @@ problems right off the bat.</p>
     currency: String
     emoji: String!
 }
-</code></pre><blockquote>
-<p>I&rsquo;ve omitted attributes leading to other types to keep this example brief but
-know that this API also has info on languages, continents and states!</p>
-</blockquote>
-<p>As an example, this simple query returns the following json:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> requests <span style=color:#f92672>import</span> post
-
-url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://countries.trevorblades.com&#34;</span>
-
-query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
-</span><span style=color:#e6db74>{
-</span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
-</span><span style=color:#e6db74>    code
-</span><span style=color:#e6db74>    name
-</span><span style=color:#e6db74>    native
-</span><span style=color:#e6db74>    phone
-</span><span style=color:#e6db74>    capital
-</span><span style=color:#e6db74>    currency
-</span><span style=color:#e6db74>    emoji
-</span><span style=color:#e6db74>  }
-</span><span style=color:#e6db74>}
-</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
-
-post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
-
-<span style=color:#75715e># Returns:</span>
-<span style=color:#75715e># {&#39;data&#39;: {&#39;country&#39;: {&#39;code&#39;: &#39;LV&#39;, &#39;name&#39;: &#39;Latvia&#39;, &#39;native&#39;: &#39;Latvija&#39;,</span>
-<span style=color:#75715e># &#39;phone&#39;: &#39;371&#39;, &#39;capital&#39;: &#39;Riga&#39;, &#39;currency&#39;: &#39;EUR&#39;, &#39;emoji&#39;: &#39;🇱🇻&#39;}}}</span>
-</code></pre></div><p>If we follow the schema type our pydantic class will look something like this:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Optional
-<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Country</span>(BaseModel):
-    code: str
-    name: str
-    native: str
-    phone: str
-    capital: Optional[str]
-    currency: Optional[str]
-    emoji: str
-</code></pre></div><p>Which works great, using it to parse the response works perfectly:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
-
-Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
-
-<span style=color:#75715e># Returns:</span>
-<span style=color:#75715e># code=&#39;LV&#39; name=&#39;Latvia&#39; native=&#39;Latvija&#39; phone=&#39;371&#39; capital=&#39;Riga&#39;</span>
-<span style=color:#75715e># currency=&#39;EUR&#39; emoji=&#39;🇱🇻&#39;</span>
-</code></pre></div><p>But, what if we want to query a small set of <code>Country</code>&rsquo;s attributes?</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
-</span><span style=color:#e6db74>{
-</span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
-</span><span style=color:#e6db74>    code
-</span><span style=color:#e6db74>    name
-</span><span style=color:#e6db74>  }
-</span><span style=color:#e6db74>}
-</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
-
-res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
-
-Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
-
-<span style=color:#75715e># Throws:</span>
-<span style=color:#75715e># pydantic.error_wrappers.ValidationError: 3 validation errors for Country</span>
-<span style=color:#75715e># native</span>
-<span style=color:#75715e>#   field required (type=value_error.missing)</span>
-<span style=color:#75715e># phone</span>
-<span style=color:#75715e>#   field required (type=value_error.missing)</span>
-<span style=color:#75715e># emoji</span>
-<span style=color:#75715e>#   field required (type=value_error.missing)</span>
-</code></pre></div><p>pydantic doesn&rsquo;t like the fact that some required attributes are missing.</p>
-<p>This leaves us with some depressing &ldquo;solutions&rdquo; going forward:</p>
-<ol>
-<li>
-<p>Force querying all attributes whenever a <code>Country</code> is accessed.</p>
-<p>Resulting in needless data being fetched.</p>
-</li>
-<li>
-<p>Create a model for each query, omitting unused required attributes.</p>
-<p>Resulting in an infinite amount of pydantic model classes which is
-impossible to keep track of.</p>
-</li>
-<li>
-<p>Make all attributes <code>Optional</code> to avoid parsing errors.</p>
-<p>Which results in a misleading model claiming all attributes are optional.</p>
-</li>
-</ol>
-<p>On my project we started working with option 3 and marked all attributes as
-optional.</p>
-<p>That proved to be hazardous very quickly because:</p>
-<ol>
-<li>The IDE was showing warnings claiming required attributes being accessed
-might be <code>None</code> all the time, which led to:</li>
-<li>Developers failing to take into account legitimate possible <code>None</code> warnings
-assuming these are due to the loose models.</li>
-</ol>
-<p>Troubled by these hazards I started researching a better option and landed on a
-good compromise.</p>
-<h2 id=the-solution>The solution<a hidden class=anchor aria-hidden=true href=#the-solution>#</a></h2>
-<p>Since the big issue around the 3rd option (all optional) is the misleading model
+</code></pre><blockquote><p>I&rsquo;ve omitted attributes leading to other types to keep this example brief but
+know that this API also has info on languages, continents and states!</p></blockquote><p>As an example, this simple query returns the following json:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> requests <span style=color:#f92672>import</span> post
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://countries.trevorblades.com&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    code
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    name
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    native
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    phone
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    capital
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    currency
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    emoji
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Returns:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># {&#39;data&#39;: {&#39;country&#39;: {&#39;code&#39;: &#39;LV&#39;, &#39;name&#39;: &#39;Latvia&#39;, &#39;native&#39;: &#39;Latvija&#39;,</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># &#39;phone&#39;: &#39;371&#39;, &#39;capital&#39;: &#39;Riga&#39;, &#39;currency&#39;: &#39;EUR&#39;, &#39;emoji&#39;: &#39;🇱🇻&#39;}}}</span>
+</span></span></code></pre></div><p>If we follow the schema type our pydantic class will look something like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Optional
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Country</span>(BaseModel):
+</span></span><span style=display:flex><span>    code: str
+</span></span><span style=display:flex><span>    name: str
+</span></span><span style=display:flex><span>    native: str
+</span></span><span style=display:flex><span>    phone: str
+</span></span><span style=display:flex><span>    capital: Optional[str]
+</span></span><span style=display:flex><span>    currency: Optional[str]
+</span></span><span style=display:flex><span>    emoji: str
+</span></span></code></pre></div><p>Which works great, using it to parse the response works perfectly:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Returns:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># code=&#39;LV&#39; name=&#39;Latvia&#39; native=&#39;Latvija&#39; phone=&#39;371&#39; capital=&#39;Riga&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># currency=&#39;EUR&#39; emoji=&#39;🇱🇻&#39;</span>
+</span></span></code></pre></div><p>But, what if we want to query a small set of <code>Country</code>&rsquo;s attributes?</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    code
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    name
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Throws:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># pydantic.error_wrappers.ValidationError: 3 validation errors for Country</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># native</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   field required (type=value_error.missing)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># phone</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   field required (type=value_error.missing)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># emoji</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   field required (type=value_error.missing)</span>
+</span></span></code></pre></div><p>pydantic doesn&rsquo;t like the fact that some required attributes are missing.</p><p>This leaves us with some depressing &ldquo;solutions&rdquo; going forward:</p><ol><li><p>Force querying all attributes whenever a <code>Country</code> is accessed.</p><p>Resulting in needless data being fetched.</p></li><li><p>Create a model for each query, omitting unused required attributes.</p><p>Resulting in an infinite amount of pydantic model classes which is
+impossible to keep track of.</p></li><li><p>Make all attributes <code>Optional</code> to avoid parsing errors.</p><p>Which results in a misleading model claiming all attributes are optional.</p></li></ol><p>On my project we started working with option 3 and marked all attributes as
+optional.</p><p>That proved to be hazardous very quickly because:</p><ol><li>The IDE was showing warnings claiming required attributes being accessed
+might be <code>None</code> all the time, which led to:</li><li>Developers failing to take into account legitimate possible <code>None</code> warnings
+assuming these are due to the loose models.</li></ol><p>Troubled by these hazards I started researching a better option and landed on a
+good compromise.</p><h2 id=the-solution>The solution<a hidden class=anchor aria-hidden=true href=#the-solution>#</a></h2><p>Since the big issue around the 3rd option (all optional) is the misleading model
 effecting the IDE, I started looking for a way to implicitly allow for partial
-creation of the model.</p>
-<p>I ended up with this:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union, Tuple, Dict, Any, get_origin, get_args
-<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-<span style=color:#f92672>from</span> pydantic.fields <span style=color:#f92672>import</span> DeferredType
-<span style=color:#f92672>from</span> pydantic.main <span style=color:#f92672>import</span> ModelMetaclass
-<span style=color:#f92672>from</span> pydantic.generics <span style=color:#f92672>import</span> GenericModel
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ImplicitOptional</span>(ModelMetaclass):
-    <span style=color:#66d9ef>def</span> __new__(cls, name: str, bases: Tuple[type], namespaces: Dict[str, Any], <span style=color:#f92672>**</span>kwargs):
-        annotations: dict <span style=color:#f92672>=</span> namespaces<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;__annotations__&#34;</span>, {})
-
-        <span style=color:#66d9ef>for</span> base <span style=color:#f92672>in</span> bases:
-            <span style=color:#66d9ef>for</span> base_ <span style=color:#f92672>in</span> base<span style=color:#f92672>.</span>__mro__:
-                <span style=color:#66d9ef>if</span> base_ <span style=color:#f92672>is</span> BaseModel <span style=color:#f92672>or</span> base_ <span style=color:#f92672>is</span> GenericModel:
-                    <span style=color:#66d9ef>break</span>
-
-                annotations <span style=color:#f92672>=</span> {<span style=color:#f92672>**</span>getattr(base_, <span style=color:#e6db74>&#34;__annotations__&#34;</span>, {}), <span style=color:#f92672>**</span>annotations}
-
-        <span style=color:#66d9ef>for</span> field, annotation <span style=color:#f92672>in</span> annotations<span style=color:#f92672>.</span>items():
-
-            <span style=color:#66d9ef>if</span> field<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;__&#34;</span>):
-                <span style=color:#66d9ef>continue</span>
-
-            <span style=color:#66d9ef>if</span> get_origin(annotation) <span style=color:#f92672>is</span> Union <span style=color:#f92672>and</span> type(<span style=color:#66d9ef>None</span>) <span style=color:#f92672>in</span> get_args(annotation):
-                <span style=color:#66d9ef>continue</span>
-
-            <span style=color:#66d9ef>if</span> isinstance(annotation, DeferredType):
-                <span style=color:#66d9ef>continue</span>
-
-            annotations[field] <span style=color:#f92672>=</span> Optional[annotation]
-
-        namespaces[<span style=color:#e6db74>&#34;__annotations__&#34;</span>] <span style=color:#f92672>=</span> annotations
-
-        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>__new__(cls, name, bases, namespaces, <span style=color:#f92672>**</span>kwargs)
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GraphQLBaseModel</span>(BaseModel, metaclass<span style=color:#f92672>=</span>ImplicitOptional):
-    <span style=color:#66d9ef>pass</span>
-</code></pre></div><blockquote>
-<p>This solution is based on the <a href=https://stackoverflow.com/a/67733889/1866480>solution proposed here</a> with some extra
+creation of the model.</p><p>I ended up with this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union, Tuple, Dict, Any, get_origin, get_args
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic.fields <span style=color:#f92672>import</span> DeferredType
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic.main <span style=color:#f92672>import</span> ModelMetaclass
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic.generics <span style=color:#f92672>import</span> GenericModel
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ImplicitOptional</span>(ModelMetaclass):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __new__(cls, name: str, bases: Tuple[type], namespaces: Dict[str, Any], <span style=color:#f92672>**</span>kwargs):
+</span></span><span style=display:flex><span>        annotations: dict <span style=color:#f92672>=</span> namespaces<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;__annotations__&#34;</span>, {})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> base <span style=color:#f92672>in</span> bases:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> base_ <span style=color:#f92672>in</span> base<span style=color:#f92672>.</span>__mro__:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> base_ <span style=color:#f92672>is</span> BaseModel <span style=color:#f92672>or</span> base_ <span style=color:#f92672>is</span> GenericModel:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                annotations <span style=color:#f92672>=</span> {<span style=color:#f92672>**</span>getattr(base_, <span style=color:#e6db74>&#34;__annotations__&#34;</span>, {}), <span style=color:#f92672>**</span>annotations}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> field, annotation <span style=color:#f92672>in</span> annotations<span style=color:#f92672>.</span>items():
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> field<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;__&#34;</span>):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> get_origin(annotation) <span style=color:#f92672>is</span> Union <span style=color:#f92672>and</span> type(<span style=color:#66d9ef>None</span>) <span style=color:#f92672>in</span> get_args(annotation):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> isinstance(annotation, DeferredType):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            annotations[field] <span style=color:#f92672>=</span> Optional[annotation]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        namespaces[<span style=color:#e6db74>&#34;__annotations__&#34;</span>] <span style=color:#f92672>=</span> annotations
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>__new__(cls, name, bases, namespaces, <span style=color:#f92672>**</span>kwargs)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GraphQLBaseModel</span>(BaseModel, metaclass<span style=color:#f92672>=</span>ImplicitOptional):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>pass</span>
+</span></span></code></pre></div><blockquote><p>This solution is based on the <a href=https://stackoverflow.com/a/67733889/1866480>solution proposed here</a> with some extra
 considerations for generic classes and other complex cases that were not
-covered.</p>
-</blockquote>
-<p>What this voodoo python magic class does essentially is convert all non-optional
+covered.</p></blockquote><p>What this voodoo python magic class does essentially is convert all non-optional
 fields declared in your models to optional by inheriting from <code>GraphQLBaseModel</code>
-instead of <code>BaseModel</code>.</p>
-<p>This allows the IDE to continue type checking a more accurate model, displaying
-relevant warnings, while parsing a partial model without errors at runtime.</p>
-<p>So when implementing for our example:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Country</span>(GraphQLBaseModel):
-    code: str
-    name: str
-    native: str
-    phone: str
-    capital: Optional[str]
-    currency: Optional[str]
-    emoji: str
-
-query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
-</span><span style=color:#e6db74>{
-</span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
-</span><span style=color:#e6db74>    code
-</span><span style=color:#e6db74>    name
-</span><span style=color:#e6db74>  }
-</span><span style=color:#e6db74>}
-</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
-
-res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
-
-Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
-
-<span style=color:#75715e># Returns</span>
-<span style=color:#75715e># code=&#39;LV&#39; name=&#39;Latvia&#39; native=None phone=None capital=None currency=None</span>
-<span style=color:#75715e># emoji=None</span>
-</code></pre></div><p>It is important to mention, although somewhat preferable to option 3, this
-solution still comes with a sharp edge.</p>
-<p>When encountering a <code>None</code> value in a required field, you could safely deduce
+instead of <code>BaseModel</code>.</p><p>This allows the IDE to continue type checking a more accurate model, displaying
+relevant warnings, while parsing a partial model without errors at runtime.</p><p>So when implementing for our example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Country</span>(GraphQLBaseModel):
+</span></span><span style=display:flex><span>    code: str
+</span></span><span style=display:flex><span>    name: str
+</span></span><span style=display:flex><span>    native: str
+</span></span><span style=display:flex><span>    phone: str
+</span></span><span style=display:flex><span>    capital: Optional[str]
+</span></span><span style=display:flex><span>    currency: Optional[str]
+</span></span><span style=display:flex><span>    emoji: str
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  country(code: &#34;LV&#34;) {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    code
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    name
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>res <span style=color:#f92672>=</span> post(url, json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;query&#34;</span>: query})<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Country<span style=color:#f92672>.</span>parse_obj(res[<span style=color:#e6db74>&#34;data&#34;</span>][<span style=color:#e6db74>&#34;country&#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Returns</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># code=&#39;LV&#39; name=&#39;Latvia&#39; native=None phone=None capital=None currency=None</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># emoji=None</span>
+</span></span></code></pre></div><p>It is important to mention, although somewhat preferable to option 3, this
+solution still comes with a sharp edge.</p><p>When encountering a <code>None</code> value in a required field, you could safely deduce
 that it wasn&rsquo;t mentioned in the query. On the other hand, a <code>None</code> value in an
 optional field is ambiguous and could mean either that data was <code>None</code> or that
-the field was not mentioned in the query.</p>
-</div>
-<footer class=post-footer>
-<ul class=post-tags>
-<li><a href=https://gatomalo.dev/tags/graphql/>graphql</a></li>
-<li><a href=https://gatomalo.dev/tags/pydantic/>pydantic</a></li>
-<li><a href=https://gatomalo.dev/tags/python/>python</a></li>
-</ul>
-</footer><div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//gato-malo.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</article>
-</main>
-<footer class=footer>
-<span>&copy; 2022 <a href=https://gatomalo.dev/>Gato Malo</a></span>
-<span>
-Powered by
+the field was not mentioned in the query.</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://gatomalo.dev/tags/graphql/>graphql</a></li><li><a href=https://gatomalo.dev/tags/pydantic/>pydantic</a></li><li><a href=https://gatomalo.dev/tags/python/>python</a></li></ul></footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//gato-malo.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></article></main><footer class=footer><span>&copy; 2023 <a href=https://gatomalo.dev/>Gato Malo</a></span>
+<span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/mastern2k3/hugo-PaperMod-Nord rel=noopener target=_blank>PaperMod-Nord</a>
-</span>
-</footer>
-<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a>
-<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
-<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
-</body>
-</html>
+        <a href=https://github.com/mastern2k3/hugo-PaperMod-Nord rel=noopener target=_blank>PaperMod-Nord</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

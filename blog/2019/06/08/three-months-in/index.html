@@ -1,180 +1,37 @@
-<!doctype html><html lang=en dir=auto>
-<head><meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
-<title>Three months in | Gato Malo</title>
-<meta name=keywords content="throne">
-<meta name=description content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Three months in | Gato Malo</title><meta name=keywords content="throne"><meta name=description content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
 Although C# has been giving me a lot of trouble I&rsquo;ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.
-First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented.">
-<meta name=author content="Nitzan Zada">
-<link rel=canonical href=https://gatomalo.dev/blog/2019/06/08/three-months-in/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.4c0edbddf6d9d86d1a8f4c9fa6cf34bd2dd8d46c62c5d0f5dbee4a15c69e3ccd.css integrity="sha256-TA7b3fbZ2G0aj0yfps80vS3Y1GxixdD12+5KFcaePM0=" rel="preload stylesheet" as=style>
-<link rel=preload href=/img/logo.png as=image>
-<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://gatomalo.dev/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=https://gatomalo.dev/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=https://gatomalo.dev/favicon-32x32.png>
-<link rel=apple-touch-icon href=https://gatomalo.dev/apple-touch-icon.png>
-<link rel=mask-icon href=https://gatomalo.dev/safari-pinned-tab.svg>
-<meta name=theme-color content="#2e2e33">
-<meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.2">
-<noscript>
-<style>#theme-toggle,.top-link{display:none}</style>
-</noscript>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-142124854-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Three months in">
-<meta property="og:description" content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
+First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented."><meta name=author content="Nitzan Zada"><link rel=canonical href=https://gatomalo.dev/blog/2019/06/08/three-months-in/><link crossorigin=anonymous href=/assets/css/stylesheet.87e7daa54d00389cea30a1d3ea83314172530ad5d91bd124315dd420951069a5.css integrity="sha256-h+fapU0AOJzqMKHT6oMxQXJTCtXZG9EkMV3UIJUQaaU=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://gatomalo.dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://gatomalo.dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://gatomalo.dev/favicon-32x32.png><link rel=apple-touch-icon href=https://gatomalo.dev/apple-touch-icon.png><link rel=mask-icon href=https://gatomalo.dev/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-142124854-1","auto"),ga("send","pageview"))</script><meta property="og:title" content="Three months in"><meta property="og:description" content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
 Although C# has been giving me a lot of trouble I&rsquo;ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.
-First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://gatomalo.dev/blog/2019/06/08/three-months-in/"><meta property="article:section" content="blog">
-<meta property="article:published_time" content="2019-06-08T10:15:27+03:00">
-<meta property="article:modified_time" content="2019-06-08T10:15:27+03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Three months in">
-<meta name=twitter:description content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
+First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented."><meta property="og:type" content="article"><meta property="og:url" content="https://gatomalo.dev/blog/2019/06/08/three-months-in/"><meta property="article:section" content="blog"><meta property="article:published_time" content="2019-06-08T10:15:27+03:00"><meta property="article:modified_time" content="2019-06-08T10:15:27+03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Three months in"><meta name=twitter:description content="I figured it&rsquo;s time to start recording what I&rsquo;m up to with Throne of Mithrill, so, here it goes.
 Although C# has been giving me a lot of trouble I&rsquo;ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.
-First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blog","item":"https://gatomalo.dev/blog/"},{"@type":"ListItem","position":2,"name":"Three months in","item":"https://gatomalo.dev/blog/2019/06/08/three-months-in/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Three months in","name":"Three months in","description":"I figured it\u0026rsquo;s time to start recording what I\u0026rsquo;m up to with Throne of Mithrill, so, here it goes.\nAlthough C# has been giving me a lot of trouble I\u0026rsquo;ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.\nFirst were the movement and engagement \u0026ldquo;orders\u0026rdquo; (as they once were called) got implemented.","keywords":["throne"],"articleBody":"I figured it’s time to start recording what I’m up to with Throne of Mithrill, so, here it goes.\nAlthough C# has been giving me a lot of trouble I’ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.\nFirst were the movement and engagement “orders” (as they once were called) got implemented.\nThen, the server and aggression system, allowing enemy mobs to strike back when a player entered proximity.\nIf you’re observant enough you’ll notice the exclamation effect over the enemy knight guy’s head as he approaches the player and a focusing circle on the triggering player.\nThe exclamation mark came in as an indication I put in to test the message was being processed correctly, I added the rotating circle later to emphasize and alarm the player.\nIt was important for me that the game would be built designed around the multiplayer experience, so, synchronization and match authorization came almost immediately.\nSince at this point the characters' ownership is given semi-randomly by the server, I found it helpful to add ownership indicators, however crude.\nYou can also notice the movement, auto-attack and auto-heal command interface.\nThe like will snap and change colors according to the default offensive / supportive ability of a character (in case they have one) or blue for simple movement.\nAside from the default offensive / supportive auto-abilities (which could later be selected by the player), characters can also use actionable abilities.\nI started with a simple circular AOE as a proof of concept but more will come.\nA casting system is also in place, enforcing a vulnerability when casting.\nMore things in the works   Aggro system - Although it’s hard to notice there is an aggro system I’m work-shopping.\nDamage afflictions and heals cause enemies to redirect their attention. It is very sensitive at the moment, causing redirections too often.\n  Looting system - You might have noticed enemies dropping coins when they die or the coins in the middle of the screen, those are collectible and a recent refactoring caused the characters to stop collecting them. Later enemies will drop other kinds of loot and one-time usables.\n  Enemy playbooks - When engaged, enemies execute a “playbook” - a highly customizable and pluggable state machine.\nCurrently said state machines are very simple, enemies start auto-attacking their aggressor and use an ability periodically, but, soon I want to add enemy healers which will put my design to the test.\n  Trajectory   Platforms - I still have a lot to figure out regarding Godot. C# has been giving me trouble, so I’m looking into utilizing the GDNative bindings with either Go or Rust.\n  Complex playbooks - Enemies are not really threatening at the moment, so I want to introduce a support-type enemy and an enrage mechanic.\n  Buff system - As part of introducing an enrage mechanic I’ll be adding a basic buff system, allowing me to apply effects for variable periods of time.\n  Bosses - Once the buff system and new playbooks are in place I’ll start experimenting with more complex maps and bosses.\nI am set to build a team-oriented game and I want bosses to play an important role, soon I’ll be posting some drafts for the first boss encounter.\n  ","wordCount":"552","inLanguage":"en","datePublished":"2019-06-08T10:15:27+03:00","dateModified":"2019-06-08T10:15:27+03:00","author":{"@type":"Person","name":"Nitzan Zada"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://gatomalo.dev/blog/2019/06/08/three-months-in/"},"publisher":{"@type":"Organization","name":"Gato Malo","logo":{"@type":"ImageObject","url":"https://gatomalo.dev/favicon.ico"}}}</script>
-</head>
-<body class=dark id=top>
-<script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove('dark')</script>
-<header class=header>
-<nav class=nav>
-<div class=logo>
-<a href=https://gatomalo.dev/ accesskey=h title="Gato Malo (Alt + H)">
-<img src=https://gatomalo.dev/img/logo.png alt=logo aria-label=logo height=" 30px">Gato Malo</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
-</span>
-</div>
-<ul id=menu>
-<li>
-<a href=https://gatomalo.dev/about/ title=About>
-<span>About</span>
-</a>
-</li>
-<li>
-<a href=https://gatomalo.dev/blog/ title=Blog>
-<span>Blog</span>
-</a>
-</li>
-</ul>
-</nav>
-</header>
-<main class=main>
-<article class=post-single>
-<header class=post-header>
-<h1 class=post-title>
-Three months in
-</h1>
-<div class=post-meta><span title="2019-06-08 10:15:27 +0300 +0300">June 8, 2019</span>&nbsp;·&nbsp;Nitzan Zada
-</div>
-</header>
-<div class=post-content><p>I figured it&rsquo;s time to start recording what I&rsquo;m up to with <strong>Throne of
-Mithrill</strong>, so, here it goes.</p>
-<p><img loading=lazy src=idle.gif alt="ToM basics">
-</p>
-<p>Although C# has been giving me a lot of trouble I&rsquo;ve managed to design things
+First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got implemented."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blog","item":"https://gatomalo.dev/blog/"},{"@type":"ListItem","position":2,"name":"Three months in","item":"https://gatomalo.dev/blog/2019/06/08/three-months-in/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Three months in","name":"Three months in","description":"I figured it\u0026rsquo;s time to start recording what I\u0026rsquo;m up to with Throne of Mithrill, so, here it goes.\nAlthough C# has been giving me a lot of trouble I\u0026rsquo;ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.\nFirst were the movement and engagement \u0026ldquo;orders\u0026rdquo; (as they once were called) got implemented.","keywords":["throne"],"articleBody":"I figured it’s time to start recording what I’m up to with Throne of Mithrill, so, here it goes.\nAlthough C# has been giving me a lot of trouble I’ve managed to design things stable enough to start putting in some of the basic mechanics, although I might need to port everything to either Rust or Go.\nFirst were the movement and engagement “orders” (as they once were called) got implemented.\nThen, the server and aggression system, allowing enemy mobs to strike back when a player entered proximity.\nIf you’re observant enough you’ll notice the exclamation effect over the enemy knight guy’s head as he approaches the player and a focusing circle on the triggering player.\nThe exclamation mark came in as an indication I put in to test the message was being processed correctly, I added the rotating circle later to emphasize and alarm the player.\nIt was important for me that the game would be built designed around the multiplayer experience, so, synchronization and match authorization came almost immediately.\nSince at this point the characters’ ownership is given semi-randomly by the server, I found it helpful to add ownership indicators, however crude.\nYou can also notice the movement, auto-attack and auto-heal command interface.\nThe like will snap and change colors according to the default offensive / supportive ability of a character (in case they have one) or blue for simple movement.\nAside from the default offensive / supportive auto-abilities (which could later be selected by the player), characters can also use actionable abilities.\nI started with a simple circular AOE as a proof of concept but more will come.\nA casting system is also in place, enforcing a vulnerability when casting.\nMore things in the works Aggro system - Although it’s hard to notice there is an aggro system I’m work-shopping.\nDamage afflictions and heals cause enemies to redirect their attention. It is very sensitive at the moment, causing redirections too often.\nLooting system - You might have noticed enemies dropping coins when they die or the coins in the middle of the screen, those are collectible and a recent refactoring caused the characters to stop collecting them. Later enemies will drop other kinds of loot and one-time usables.\nEnemy playbooks - When engaged, enemies execute a “playbook” - a highly customizable and pluggable state machine.\nCurrently said state machines are very simple, enemies start auto-attacking their aggressor and use an ability periodically, but, soon I want to add enemy healers which will put my design to the test.\nTrajectory Platforms - I still have a lot to figure out regarding Godot. C# has been giving me trouble, so I’m looking into utilizing the GDNative bindings with either Go or Rust.\nComplex playbooks - Enemies are not really threatening at the moment, so I want to introduce a support-type enemy and an enrage mechanic.\nBuff system - As part of introducing an enrage mechanic I’ll be adding a basic buff system, allowing me to apply effects for variable periods of time.\nBosses - Once the buff system and new playbooks are in place I’ll start experimenting with more complex maps and bosses.\nI am set to build a team-oriented game and I want bosses to play an important role, soon I’ll be posting some drafts for the first boss encounter.\n","wordCount":"552","inLanguage":"en","datePublished":"2019-06-08T10:15:27+03:00","dateModified":"2019-06-08T10:15:27+03:00","author":{"@type":"Person","name":"Nitzan Zada"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://gatomalo.dev/blog/2019/06/08/three-months-in/"},"publisher":{"@type":"Organization","name":"Gato Malo","logo":{"@type":"ImageObject","url":"https://gatomalo.dev/favicon.ico"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://gatomalo.dev/ accesskey=h title="Gato Malo (Alt + H)"><img src=https://gatomalo.dev/img/logo.png alt aria-label=logo height=30>Gato Malo</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://gatomalo.dev/about/ title=About><span>About</span></a></li><li><a href=https://gatomalo.dev/blog/ title=Blog><span>Blog</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class=post-title>Three months in</h1><div class=post-meta><span title='2019-06-08 10:15:27 +0300 +0300'>June 8, 2019</span>&nbsp;·&nbsp;Nitzan Zada</div></header><div class=post-content><p>I figured it&rsquo;s time to start recording what I&rsquo;m up to with <strong>Throne of
+Mithrill</strong>, so, here it goes.</p><p><img loading=lazy src=idle.gif alt="ToM basics"></p><p>Although C# has been giving me a lot of trouble I&rsquo;ve managed to design things
 stable enough to start putting in some of the basic mechanics, although I might need to port
-everything to either Rust or Go.</p>
-<p>First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got
-implemented.</p>
-<p><img loading=lazy src=move_attack.gif alt="Move and attack order">
-</p>
-<p>Then, the server and aggression system, allowing enemy mobs to strike back when a player entered proximity.<br>
-If you&rsquo;re observant enough you&rsquo;ll notice the exclamation effect over the enemy
+everything to either Rust or Go.</p><p>First were the movement and engagement &ldquo;orders&rdquo; (as they once were called) got
+implemented.</p><p><img loading=lazy src=move_attack.gif alt="Move and attack order"></p><p>Then, the server and aggression system, allowing enemy mobs to strike back when a player entered proximity.<br>If you&rsquo;re observant enough you&rsquo;ll notice the exclamation effect over the enemy
 knight guy&rsquo;s head as he approaches the player and a focusing circle on the
-triggering player.</p>
-<p>The exclamation mark came in as an indication I put in to test the message was
+triggering player.</p><p>The exclamation mark came in as an indication I put in to test the message was
 being processed correctly, I added the rotating circle later to emphasize and
-alarm the player.</p>
-<p>It was important for me that the game would be built designed around the
+alarm the player.</p><p>It was important for me that the game would be built designed around the
 multiplayer experience, so, synchronization and match authorization came almost
-immediately.</p>
-<p><img loading=lazy src=multiplayer.gif alt="Multiplayer and ownership">
-</p>
-<p>Since at this point the characters' ownership is given semi-randomly by the server, I found it helpful to add <strong>ownership indicators</strong>, however crude.</p>
-<p>You can also notice the movement, auto-attack and auto-heal command interface.<br>
-The like will snap and change colors according to the default offensive /
+immediately.</p><p><img loading=lazy src=multiplayer.gif alt="Multiplayer and ownership"></p><p>Since at this point the characters&rsquo; ownership is given semi-randomly by the server, I found it helpful to add <strong>ownership indicators</strong>, however crude.</p><p>You can also notice the movement, auto-attack and auto-heal command interface.<br>The like will snap and change colors according to the default offensive /
 supportive ability of a character (in case they have one) or blue for simple
-movement.</p>
-<p><img loading=lazy src=aoe.gif alt="AOE abilities">
-</p>
-<p>Aside from the default offensive / supportive auto-abilities (which could later be selected by the player), characters can also use actionable abilities.<br>
-I started with a simple circular AOE as a proof of concept but more will come.</p>
-<p>A casting system is also in place, enforcing a vulnerability when casting.</p>
-<h2 id=more-things-in-the-works>More things in the works<a hidden class=anchor aria-hidden=true href=#more-things-in-the-works>#</a></h2>
-<ul>
-<li>
-<p><strong>Aggro system</strong> - Although it&rsquo;s hard to notice there is an aggro system I&rsquo;m
-work-shopping.<br>
-Damage afflictions and heals cause enemies to redirect their
-attention. It is very sensitive at the moment, causing redirections too often.</p>
-</li>
-<li>
-<p><strong>Looting system</strong> - You might have noticed enemies dropping coins when they die
+movement.</p><p><img loading=lazy src=aoe.gif alt="AOE abilities"></p><p>Aside from the default offensive / supportive auto-abilities (which could later be selected by the player), characters can also use actionable abilities.<br>I started with a simple circular AOE as a proof of concept but more will come.</p><p>A casting system is also in place, enforcing a vulnerability when casting.</p><h2 id=more-things-in-the-works>More things in the works<a hidden class=anchor aria-hidden=true href=#more-things-in-the-works>#</a></h2><ul><li><p><strong>Aggro system</strong> - Although it&rsquo;s hard to notice there is an aggro system I&rsquo;m
+work-shopping.<br>Damage afflictions and heals cause enemies to redirect their
+attention. It is very sensitive at the moment, causing redirections too often.</p></li><li><p><strong>Looting system</strong> - You might have noticed enemies dropping coins when they die
 or the coins in the middle of the screen, those are collectible and a recent
 refactoring caused the characters to stop collecting them.
-Later enemies will drop other kinds of loot and one-time usables.</p>
-</li>
-<li>
-<p><strong>Enemy playbooks</strong> - When engaged, enemies execute a &ldquo;playbook&rdquo; -
-a highly customizable and pluggable state machine.<br>
-Currently said state machines are very simple, enemies start auto-attacking
+Later enemies will drop other kinds of loot and one-time usables.</p></li><li><p><strong>Enemy playbooks</strong> - When engaged, enemies execute a &ldquo;playbook&rdquo; -
+a highly customizable and pluggable state machine.<br>Currently said state machines are very simple, enemies start auto-attacking
 their aggressor and use an ability periodically, but, soon I want to add enemy
-healers which will put my design to the test.</p>
-</li>
-</ul>
-<h2 id=trajectory>Trajectory<a hidden class=anchor aria-hidden=true href=#trajectory>#</a></h2>
-<ul>
-<li>
-<p><strong>Platforms</strong> - I still have a lot to figure out regarding <strong>Godot</strong>. C# has
+healers which will put my design to the test.</p></li></ul><h2 id=trajectory>Trajectory<a hidden class=anchor aria-hidden=true href=#trajectory>#</a></h2><ul><li><p><strong>Platforms</strong> - I still have a lot to figure out regarding <strong>Godot</strong>. C# has
 been giving me trouble, so I&rsquo;m looking into utilizing the GDNative bindings with
-either Go or Rust.</p>
-</li>
-<li>
-<p><strong>Complex playbooks</strong> - Enemies are not really threatening at the moment, so I
-want to introduce a support-type enemy and an enrage mechanic.</p>
-</li>
-<li>
-<p><strong>Buff system</strong> - As part of introducing an enrage mechanic I&rsquo;ll be adding a
-basic buff system, allowing me to apply effects for variable periods of time.</p>
-</li>
-<li>
-<p><strong>Bosses</strong> - Once the buff system and new playbooks are in place I&rsquo;ll start
-experimenting with more complex maps and bosses.</p>
-<p>I am set to build a team-oriented game and I want bosses to play an important
-role, soon I&rsquo;ll be posting some drafts for the first boss encounter.</p>
-</li>
-</ul>
-</div>
-<footer class=post-footer>
-<ul class=post-tags>
-<li><a href=https://gatomalo.dev/tags/throne/>Throne of Mithril</a></li>
-</ul>
-</footer><div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//gato-malo.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</article>
-</main>
-<footer class=footer>
-<span>&copy; 2022 <a href=https://gatomalo.dev/>Gato Malo</a></span>
-<span>
-Powered by
+either Go or Rust.</p></li><li><p><strong>Complex playbooks</strong> - Enemies are not really threatening at the moment, so I
+want to introduce a support-type enemy and an enrage mechanic.</p></li><li><p><strong>Buff system</strong> - As part of introducing an enrage mechanic I&rsquo;ll be adding a
+basic buff system, allowing me to apply effects for variable periods of time.</p></li><li><p><strong>Bosses</strong> - Once the buff system and new playbooks are in place I&rsquo;ll start
+experimenting with more complex maps and bosses.</p><p>I am set to build a team-oriented game and I want bosses to play an important
+role, soon I&rsquo;ll be posting some drafts for the first boss encounter.</p></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://gatomalo.dev/tags/throne/>Throne of Mithril</a></li></ul></footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//gato-malo.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></article></main><footer class=footer><span>&copy; 2023 <a href=https://gatomalo.dev/>Gato Malo</a></span>
+<span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/mastern2k3/hugo-PaperMod-Nord rel=noopener target=_blank>PaperMod-Nord</a>
-</span>
-</footer>
-<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a>
-<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
-<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
-</body>
-</html>
+        <a href=https://github.com/mastern2k3/hugo-PaperMod-Nord rel=noopener target=_blank>PaperMod-Nord</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

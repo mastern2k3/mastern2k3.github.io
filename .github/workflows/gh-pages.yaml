@@ -30,6 +30,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-      - uses: mastern2k3/sitemap-ping-action@master
+
+      - uses: atymic/sitemap-ping-action@master
         with:
           sitemap-url: 'https://gatomalo.dev/sitemap.xml'
